@@ -59,5 +59,6 @@ double  compute_disorder(t_node *stack);
 // Sorting algorithms
 void    insertion(t_node **a, t_node **b);
 void    chunkbased(t_node **a, t_node **b);
+void	rangebased_sort(t_node **a, t_node **b);
 
 #endif
