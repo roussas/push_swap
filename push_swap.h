@@ -61,6 +61,9 @@ void radix_sort(t_node **a, t_node **b);
 
 
 double  compute_disorder(t_node *stack);
+// Ranking functions
+int rank_set(t_node *node, t_node **a);
+void rank_list (t_node **a);
 
 // Sorting algorithms
 void    insertion(t_node **a, t_node **b);
