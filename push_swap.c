@@ -37,30 +37,30 @@
 // 	return (lst);
 // }
 
-// int	ft_atoi(const char *nptr)
-// {
-// 	int	i;
-// 	int	k;
-// 	int	sign;
+int	ft_atoi(const char *nptr)
+{
+	int	i;
+	int	k;
+	int	sign;
 
-// 	i = 0;
-// 	k = 0;
-// 	sign = 1;
-// 	while (nptr[i] == ' ' || (nptr[i] >= 9 && nptr[i] <= 13))
-// 		i++;
-// 	if (nptr[i] == '+' || nptr[i] == '-')
-// 	{
-// 		if (nptr[i] == '-')
-// 			sign *= -1;
-// 		i++;
-// 	}
-// 	while (nptr[i] >= '0' && nptr[i] <= '9')
-// 	{
-// 		k = 10 * k + nptr[i] - '0';
-// 		i++;
-// 	}
-// 	return (k * sign);
-// }
+	i = 0;
+	k = 0;
+	sign = 1;
+	while (nptr[i] == ' ' || (nptr[i] >= 9 && nptr[i] <= 13))
+		i++;
+	if (nptr[i] == '+' || nptr[i] == '-')
+	{
+		if (nptr[i] == '-')
+			sign *= -1;
+		i++;
+	}
+	while (nptr[i] >= '0' && nptr[i] <= '9')
+	{
+		k = 10 * k + nptr[i] - '0';
+		i++;
+	}
+	return (k * sign);
+}
 
 // t_node **list(char **s, int i)
 // {
@@ -77,27 +77,24 @@
 // 	return (a);
 // }
 
-// // int main (int argc , char ** argv)
-// // {
+// int main (int argc , char ** argv)
+// {
 
-// //     int i;
-// //     t_node  **a;
-// //     t_node  *b;
-// //     //Error handling  , must check for how many arguments I can take
-// //     if (argc < 2)
-// //         write(2,"Error\n",6);
-// //     //check for command , also needs work
-// //     if (argv[1] == "--simple" || argv[1] == "--medium" || argv[1] == "--complex"|| argv[1] =="--adaptive")
-// // 	{
-// // 		i = 2;
-// // 		a = list(argv,i);
-// // 	}
-// // 	else
-// // 	{
-// // 		i = 1;
-// // 		a = list(argv[i])
-// // 	}
-
-
-    
-// // }
+//     int i;
+//     t_node  **a;
+//     t_node  *b;
+//     //Error handling  , must check for how many arguments I can take
+//     if (argc < 2)
+//         write(2,"Error\n",6);
+//     //check for command , also needs work
+//     if (argv[1] == "--simple" || argv[1] == "--medium" || argv[1] == "--complex"|| argv[1] =="--adaptive")
+// 	{
+// 		i = 2;
+// 		a = list(argv,i);
+// 	}
+// 	else
+// 	{
+// 		i = 1;
+// 		a = list(argv[i])
+// 	}   
+// }

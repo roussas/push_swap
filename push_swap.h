@@ -51,6 +51,9 @@ int rank_set(t_node *node, t_node **a);
 void rank_list (t_node **a);
 int max_bits(t_node **a);
 void radix_sort(t_node **a, t_node **b);
+int	ft_atoi(const char *nptr);
+char	**ft_split(char const *s, char c);
+
 
 
 
@@ -59,6 +62,5 @@ double  compute_disorder(t_node *stack);
 // Sorting algorithms
 void    insertion(t_node **a, t_node **b);
 void    chunkbased(t_node **a, t_node **b);
-void	rangebased_sort(t_node **a, t_node **b);
 
 #endif
