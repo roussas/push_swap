@@ -13,7 +13,7 @@ SRCS    = complex.c \
 		  push_swap.c \
 		  stack_utils.c
 OBJS    = $(SRCS:.c=.o)
-DEPS	= $(SRCS:.c=.o)
+DEPS	= $(SRCS:.c=.d)
 
 all: $(NAME)
 
