@@ -33,11 +33,12 @@ static int parsedata(const char *arg, t_node *a)
     //      whitespace?, split, atoi, put on stack
     // include validation check --> call validator
     //      put on stack, mind direction (earliest arg is top of stack)
-
+    (void )arg;
+    (void )a;
     return (1);
 }
 
-static int parseflags(const char *arg, t_flags *f)
+static int parseflags(const char *arg, t_flag *f)
 {
     int strat;
 
@@ -59,10 +60,15 @@ static int parseflags(const char *arg, t_flags *f)
     return (1);
 }
 
-static void flags_init(t_flags *f)
+static t_flag *flags_init()
 {
+    t_flag *f;
+    f = malloc(sizeof(t_flag));
+    if (f == NULL)
+        return (NULL);
     f->bench = 0;
     f->strategy = 0;
+    return (f);
 }
 
 static int checkarg(const char *arg)
@@ -73,20 +79,23 @@ static int checkarg(const char *arg)
         return ('d');
 }
 
-static int parseargs(int count, char **args, t_node *a, t_node *b, t_flags *f)
+static int parseargs(int count, char **args, t_node *a, t_flag *f)
 {
     int i;
 
-    flags_init(f);
     i = 1;
     while (i < count)
     {
         if (checkarg(args[i]) == 'f')
+        {
             if (!parseflags(args[i], f))
                 return (0);
+        }
         else if (checkarg(args[i]) == 'd')
+        {
             if(!parsedata(args[i], a))
                 return (0);
+        }
         i++;
     }
     return (0);
@@ -95,14 +104,15 @@ static int parseargs(int count, char **args, t_node *a, t_node *b, t_flags *f)
 int main(int argc, char **argv)
 {
     t_node *a;
-    t_node *b;
-    t_flags *f;
+    t_flag *f;
 
     if (argc < 2)
         return (0);
-    if (!parseargs(argc, argv, a, b, f))
+    a = NULL;
+    f = flags_init();
+    if (!parseargs(argc, argv, a, f))
     {
-        // write(2, "Error\n", 6);
+        write(2, "Error\n", 6);
         return (0);
     }
     return (1);

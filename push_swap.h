@@ -17,11 +17,11 @@
 # include <stdio.h> //DEBUG ONLY: remove before submit
 # include <unistd.h>
 
-typedef struct s_flags
+typedef struct s_flag
 {
 	int		strategy;
 	int		bench;
-}	t_flags;
+}	t_flag;
 
 typedef struct t_node
 {
