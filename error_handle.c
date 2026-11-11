@@ -65,6 +65,7 @@ void add_back(t_node **a, t_node *new)
         last = last->next;
     last->next = new;
 }
+//NOT WORKING
 int no_doubles(t_node *a)
 {
     t_node *tmp;
@@ -98,7 +99,7 @@ int is_int(t_node *a)
     tmp = a;
     while (tmp)
     {
-        if(!((tmp->value >= -2147483648) && tmp->value <= 2147483648))
+        if(tmp->value <= -2147483648 && tmp->value >= 2147483648)
             return (0);
         tmp = tmp->next;
     }
@@ -134,14 +135,14 @@ t_node *str_to_node(char *s)
 }
 
 
-// int main()
-// {
-//     char *s = "1 08742  748 173 7645186 5490 637 5742734 53 8761 9 1";
-//     char *l = "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 18 10000 972396129";
-//     t_node *a = str_to_node(s);
-//     t_node *b = str_to_node(l);
-//     // print_stack(a);
-//     // printf("\n");
-//     // print_stack(b);
-//     printf("Invalid : %i\nValid : %i\n",no_doubles(a),no_doubles(b));
-// }
+int main()
+{
+    char *s = "1 08742  748 173 7645186 5490 637 5742734 53 8761 9 15000000000";
+    char *l = "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 18 10000 231";
+    t_node *a = str_to_node(s);
+    t_node *b = str_to_node(l);
+    print_stack(a);
+    // printf("\n");
+    // print_stack(b);
+    printf("Invalid : %i\nValid : %i\n",is_int(a),is_int(b));
+}
