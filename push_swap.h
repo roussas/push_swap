@@ -57,6 +57,9 @@ char	**ft_split(char const *s, char c);
 
 
 
+
+
+
 double  compute_disorder(t_node *stack);
 
 // Sorting algorithms
