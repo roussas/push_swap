@@ -136,16 +136,3 @@ t_node *str_to_node(char *s)
     free_list(l);
     return (a);
 }
-
-
-int main()
-{
-    char *s = "324325123523432434123435";
-    char *l = "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 18 10000 231";
-    t_node *a = str_to_node(s);
-    t_node *b = str_to_node(l);
-    print_stack(a);
-    // printf("\n");
-    // print_stack(b);
-    printf("Invalid : %i\nValid : %i\n",is_int(a),is_int(b));
-}
