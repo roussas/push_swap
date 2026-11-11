@@ -51,7 +51,7 @@ static int count_numbers(char **l)
     return (i);
 }
 
-static void add_back(t_node **a, t_node *new)
+void add_back(t_node **a, t_node *new)
 {
     t_node  *last;
 
@@ -64,6 +64,45 @@ static void add_back(t_node **a, t_node *new)
     while (last->next)
         last = last->next;
     last->next = new;
+}
+int no_doubles(t_node *a)
+{
+    t_node *tmp;
+    t_node *prp;
+    int     counter;
+
+    counter = 0;
+    tmp = a;
+    prp = a;
+    while (tmp)
+    {
+        while (prp)
+        {
+            if(tmp->value == prp->value)
+                counter++;
+            prp = prp->next;
+        }
+        if (counter != 1)
+            return (0);
+        prp = a;
+        tmp = tmp->next;
+        counter = 0;
+    }
+    return (1);
+}
+
+int is_int(t_node *a)
+{
+    t_node *tmp;
+
+    tmp = a;
+    while (tmp)
+    {
+        if(!((tmp->value >= -2147483648) && tmp->value <= 2147483648))
+            return (0);
+        tmp = tmp->next;
+    }
+    return (1);
 }
 
 t_node *str_to_node(char *s)
@@ -80,7 +119,7 @@ t_node *str_to_node(char *s)
     i = count_numbers(l) - 1;
     while (i >= 0)
     {
-        n = new_t_node(ft_atoi(l[i]));
+        n = new_t_node(ft_atol(l[i]));
         if (n == NULL)
         {
             free_stack(&a);
@@ -93,3 +132,16 @@ t_node *str_to_node(char *s)
     free_list(l);
     return (a);
 }
+
+
+// int main()
+// {
+//     char *s = "1 08742  748 173 7645186 5490 637 5742734 53 8761 9 1";
+//     char *l = "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 18 10000 972396129";
+//     t_node *a = str_to_node(s);
+//     t_node *b = str_to_node(l);
+//     // print_stack(a);
+//     // printf("\n");
+//     // print_stack(b);
+//     printf("Invalid : %i\nValid : %i\n",no_doubles(a),no_doubles(b));
+// }

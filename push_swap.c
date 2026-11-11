@@ -12,11 +12,11 @@
 
 #include "push_swap.h"
 
-int	ft_atoi(const char *nptr)
+int	ft_atol(const char *nptr)
 {
-	int	i;
-	int	k;
-	int	sign;
+	int		i;
+	long	k;
+	int		sign;
 
 	i = 0;
 	k = 0;
@@ -43,14 +43,14 @@ t_node *list(char **s,int i)
     t_node *tmp;
 
     a = NULL;
-    while (argv[i])
+    while (s[i])
     {   
-        if (is_valid_int(argv[i]))
-            tmp = str_to_node(argv[i]);
+        if (is_valid_int(s[i]))
+            tmp = str_to_node(s[i]);
         else
         {
             write(2,"Error\n",6);
-            return (1);
+            return (NULL);
         }
         i++;
         add_back(&a,tmp);

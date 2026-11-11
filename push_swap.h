@@ -19,8 +19,8 @@
 
 typedef struct t_node
 {
-	int			value;
-	int			rank;
+	long			value;
+	int				rank;
 	struct t_node	*next;
 }	t_node;
 
@@ -51,8 +51,14 @@ int rank_set(t_node *node, t_node **a);
 void rank_list (t_node **a);
 int max_bits(t_node **a);
 void radix_sort(t_node **a, t_node **b);
-int	ft_atoi(const char *nptr);
+int	ft_atol(const char *nptr);
 char	**ft_split(char const *s, char c);
+int is_valid_int(char *s);
+void free_list (char **l);
+t_node *str_to_node(char *s);
+void add_back(t_node **a, t_node *new);
+
+
 
 
 
