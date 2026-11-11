@@ -1,7 +1,8 @@
 CC      = cc
-CFLAGS  = -Wall -Wextra -Werror -MMD -MP
+CFLAGS  = -Wall -Wextra -Werror
 NAME    = push_swap
 
+<<<<<<< HEAD
 SRCS    = complex.c \
 		  disorder.c \
 		  ft_strncmp.c \
@@ -18,6 +19,11 @@ SRCS    = complex.c \
 		  stack_utils.c
 OBJS    = $(SRCS:.c=.o)
 DEPS	= $(SRCS:.c=.d)
+=======
+SRCS    = complex.c disorder.c insertion.c n2.c ops_logic.c ops_rotate.c \
+          ops_swap_push.c print_stack.c push_swap.c stack_utils.c
+OBJS    = $(SRCS:.c=.o)
+>>>>>>> error_handle
 
 all: $(NAME)
 
@@ -29,13 +35,16 @@ $(NAME): $(OBJS)
 
 clean:
 	rm -f $(OBJS)
-	rm -f $(DEPS)
 
 fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
 
+<<<<<<< HEAD
 -include $(DEPS)
 
 .PHONY: all clean fclean re
+=======
+.PHONY: all clean fclean re
+>>>>>>> error_handle
