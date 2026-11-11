@@ -4,13 +4,17 @@ NAME    = push_swap
 
 SRCS    = complex.c \
 		  disorder.c \
+		  ft_strncmp.c \
 		  insertion.c \
 		  n2.c \
+		  medium.c \
 		  ops_logic.c \
 		  ops_rotate.c \
           ops_swap_push.c \
+		  parse_args.c \
 		  print_stack.c \
 		  push_swap.c \
+		  ranker.c \
 		  stack_utils.c
 OBJS    = $(SRCS:.c=.o)
 DEPS	= $(SRCS:.c=.d)
