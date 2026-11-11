@@ -12,11 +12,11 @@
 
 #include "push_swap.h"
 
-int	ft_atol(const char *nptr)
+long	ft_atol(const char *nptr)
 {
 	int		i;
 	long	k;
-	int		sign;
+	long	sign;
 
 	i = 0;
 	k = 0;

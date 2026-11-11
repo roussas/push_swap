@@ -14,7 +14,7 @@
 //THIS IS STUFF FOR HANDLING THE LINKED LIST AS WELL 
 //MAYBE THE FUNCTIONS FROM LIBFT ARE BETTER , BUT YEAH... WE WILL SEE
 
-t_node	*new_t_node(int value)
+t_node	*new_t_node(long value)
 {
 	t_node	*new;
 

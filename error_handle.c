@@ -1,5 +1,6 @@
 #include "push_swap.h"
 #include <stdio.h>
+#include <limits.h>
 
 int is_valid_int(char *s)
 {
@@ -65,7 +66,7 @@ void add_back(t_node **a, t_node *new)
         last = last->next;
     last->next = new;
 }
-//NOT WORKING
+
 int no_doubles(t_node *a)
 {
     t_node *tmp;
@@ -91,7 +92,9 @@ int no_doubles(t_node *a)
     }
     return (1);
 }
-
+//Changed new_t_node to take long
+//struct value also take long
+//ft_atoi became ft_atol
 int is_int(t_node *a)
 {
     t_node *tmp;
@@ -99,7 +102,7 @@ int is_int(t_node *a)
     tmp = a;
     while (tmp)
     {
-        if(tmp->value <= -2147483648 && tmp->value >= 2147483648)
+        if(tmp->value < -2147483647 || tmp->value > 2147483647)
             return (0);
         tmp = tmp->next;
     }
@@ -137,7 +140,7 @@ t_node *str_to_node(char *s)
 
 int main()
 {
-    char *s = "1 08742  748 173 7645186 5490 637 5742734 53 8761 9 15000000000";
+    char *s = "324325123523432434123435";
     char *l = "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 18 10000 231";
     t_node *a = str_to_node(s);
     t_node *b = str_to_node(l);
