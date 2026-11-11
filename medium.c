@@ -27,7 +27,7 @@ static int findmax_n(t_node *stack, int n)
 void    rangebased_insertion(t_node **tobesorted, t_node **otherone, int n)
 {
     int len;
-    int minpos;
+    // int minpos;
     int maxpos;
     int i;
     int j;
