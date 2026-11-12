@@ -51,7 +51,7 @@ static int count_numbers(char **l)
     return (i);
 }
 
-static void add_back(t_node **a, t_node *new)
+void add_back(t_node **a, t_node *new)
 {
     t_node  *last;
 

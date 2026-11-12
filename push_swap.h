@@ -58,11 +58,15 @@ void rank_list (t_node **a);
 int max_bits(t_node **a);
 void radix_sort(t_node **a, t_node **b);
 int	ft_atoi(const char *nptr);
+int	ft_atol(const char *nptr);
 char	**ft_split(char const *s, char c);
 
 
-
-
+// Parsing data
+int is_valid_int(char *s);
+t_node *str_to_node(char *s);
+void add_back(t_node **a, t_node *new);
+void free_list (char **l);
 
 
 
@@ -74,5 +78,6 @@ void rank_list(t_node **a);
 // Sorting algorithms
 void    insertion(t_node **a, t_node **b);
 void    chunkbased(t_node **a, t_node **b);
+void rangebased_sort(t_node **a, t_node **b);
 
 #endif

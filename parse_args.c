@@ -1,5 +1,9 @@
 #include "push_swap.h"
 #include "libft.h"
+#include <stdlib.h>
+
+// romve below
+#include <stdio.h>
 
 // possible flags
 // strategy selector:
@@ -25,16 +29,89 @@
 // 8, 1000: complex, no bench
 // 9, 1001: complex, with bench
 
-static int parsedata(const char *arg, t_node *a)
+int no_doubles(t_node *a)
 {
+    t_node *tmp;
+    t_node *prp;
+    int     counter;
+
+    counter = 0;
+    tmp = a;
+    prp = a;
+    while (tmp)
+    {
+        while (prp)
+        {
+            if(tmp->value == prp->value)
+            {
+                counter++;
+                if(counter > 1)
+                    printf("double found: %d\n", prp->value);
+
+            }
+            prp = prp->next;
+        }
+        if (counter != 1)
+        {
+            return (0);
+        }
+        prp = a;
+        tmp = tmp->next;
+        counter = 0;
+    }
+    return (1);
+}
+
+int is_int(char *s)
+{
+    char **l;
+    long     n;
+    int     i;
+
+    l = ft_split(s,' ');
+    if (l == NULL)
+        return (0);
+    i = 0;
+    while (l[i])
+    {
+        n = ft_atol(l[i]);
+        if(n < -2147483648 || n > 2147483647)
+        {
+            free_list(l);
+            return (0);
+        }
+        i++;
+    }
+    free_list(l);
+    return (1);
+}
+
+int is_valid_data(char *s)
+{
+    if (!is_valid_int(s))
+        return (0);
+    if (!is_int(s))
+        return (0);
+    return (1);
+}
+
+static int parsedata(const char *arg, t_node **a)
+{
+    t_node  *tmp;
+
+    if (!is_valid_data((char *)arg))
+        return (0);
+    // printf("Valid integer detected: %s\n", arg);
+    // printf("Making node from str\n");
+    tmp = str_to_node((char *)arg);
+    add_back(a, tmp);
+
     // check if it is a single argument
     //      whitespace?, atoi, put on stack
     // check if it is a string in the correct format to split
     //      whitespace?, split, atoi, put on stack
     // include validation check --> call validator
     //      put on stack, mind direction (earliest arg is top of stack)
-    (void )arg;
-    (void )a;
     return (1);
 }
 
@@ -79,7 +156,7 @@ static int checkarg(const char *arg)
         return ('d');
 }
 
-static int parseargs(int count, char **args, t_node *a, t_flag *f)
+static int parseargs(int count, char **args, t_node **a, t_flag *f)
 {
     int i;
 
@@ -93,27 +170,67 @@ static int parseargs(int count, char **args, t_node *a, t_flag *f)
         }
         else if (checkarg(args[i]) == 'd')
         {
+            // printf("no flag detected: %s\n", args[i]);
             if(!parsedata(args[i], a))
                 return (0);
         }
         i++;
     }
-    return (0);
+    return (1);
+}
+
+void adaptive_sort(t_node *a, t_node *b)
+{
+    float disorder;
+    
+    disorder = compute_disorder(a);
+    if (disorder < 0.2)
+        insertion(&a, &b);
+    else if ((0.2 <= disorder) && (disorder < 0.5))
+        rangebased_sort(&a, &b);
+    else if (disorder >= 0.5)
+        radix_sort(&a, &b);
+}
+
+void sort(t_node *a, t_node *b, t_flag *f)
+{
+    // printf("strategy chosen: %d\n", f->strategy);
+    if (f->strategy == 0 || f->strategy == 8)
+        adaptive_sort(a, b);
+    else if (f->strategy == 1)
+        insertion(&a, &b);
+    else if (f->strategy == 2)
+        rangebased_sort(&a, &b);
+    else if (f->strategy == 4)
+        radix_sort(&a, &b);
 }
 
 int main(int argc, char **argv)
 {
     t_node *a;
+    t_node *b;
     t_flag *f;
 
     if (argc < 2)
         return (0);
     a = NULL;
+    b = NULL;
     f = flags_init();
-    if (!parseargs(argc, argv, a, f))
+    // if (f == NULL)
+    //     return (error);
+    if (!parseargs(argc, argv, &a, f))
     {
         write(2, "Error\n", 6);
         return (0);
     }
+    if (!no_doubles(a))
+    {
+        printf("Doubles found\n");
+        write(2, "Error\n", 6);
+        return (0);
+    }
+    // print_stack(a);
+    sort(a, b, f);
+    // print_stack(a);
     return (1);
 }
