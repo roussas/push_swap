@@ -147,10 +147,3 @@ t_node *str_to_node(char *s)
     free_list(l);
     return (a);
 }
-
-int	print_error(t_node **a)
-{
-	free_stack(a);
-	write(2, "Error\n", 6);
-	return (1);
-}
