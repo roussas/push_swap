@@ -95,16 +95,22 @@ int no_doubles(t_node *a)
 //Changed new_t_node to take long
 //struct value also take long
 //ft_atoi became ft_atol
-int is_int(t_node *a)
+int is_int(char *s)
 {
-    t_node *tmp;
+    char **l;
+    long     n;
+    int     i;
 
-    tmp = a;
-    while (tmp)
+    i = 0;
+    l = ft_split(s,' ');
+    if (l == NULL)
+        return (0);
+    while (l[i])
     {
-        if(tmp->value < -2147483647 || tmp->value > 2147483647)
+        n = ft_atol(l[i]);
+        if(n < -2147483647 || n > 2147483647)
             return (0);
-        tmp = tmp->next;
+        i++;
     }
     return (1);
 }

@@ -47,16 +47,18 @@ void	rotate(t_node **stack);
 void	swap(t_node **stack);
 void	push_to(t_node **from, t_node **to);
 int		is_sorted(t_node **stack);
-int rank_set(t_node *node, t_node **a);
-void rank_list (t_node **a);
-int max_bits(t_node **a);
-void radix_sort(t_node **a, t_node **b);
+int 	rank_set(t_node *node, t_node **a);
+void 	rank_list (t_node **a);
+int 	max_bits(t_node **a);
+void 	radix_sort(t_node **a, t_node **b);
 long	ft_atol(const char *nptr);
 char	**ft_split(char const *s, char c);
-int is_valid_int(char *s);
-void free_list (char **l);
+int 	is_valid_int(char *s);
+void 	free_list (char **l);
 t_node *str_to_node(char *s);
-void add_back(t_node **a, t_node *new);
+void 	add_back(t_node **a, t_node *new);
+int		ft_atoi(const char *nptr);
+
 
 
 
