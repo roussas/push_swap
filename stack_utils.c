@@ -72,16 +72,3 @@ void	free_stack(t_node **stack)
 		*stack = tmp;
 	}
 }
-// int is_sorted(t_node **a)
-// {
-// 	t_node *stack;
-
-// 	stack = *a;
-// 	while (stack->next != NULL)
-// 	{
-// 		if (stack->value > stack->next->value)
-// 			return(0);
-// 		stack = stack->next;
-// 	}
-// 	return (1);
-// }

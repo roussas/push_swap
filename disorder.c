@@ -26,11 +26,3 @@ double  compute_disorder(t_node *stack)
         return(totalpairs);
     return (mistakes / totalpairs);
 }
-
-int main(void)
-{
-    t_node *a = NULL;
-    t_node *one = new_t_node(4);
-    printf("%f\n", compute_disorder(one));
-    printf("%f\n", compute_disorder(a));
-}
