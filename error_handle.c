@@ -91,9 +91,7 @@ int no_doubles(t_node *a)
     }
     return (1);
 }
-//Changed new_t_node to take long
-//struct value also take long
-//ft_atoi became ft_atol
+
 int is_int(char *s)
 {
     char **l;
