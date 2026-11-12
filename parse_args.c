@@ -95,7 +95,7 @@ int is_valid_data(char *s)
     return (1);
 }
 
-static int parsedata(const char *arg, t_node **a)
+int parsedata(const char *arg, t_node **a)
 {
     t_node  *tmp;
 
@@ -115,7 +115,7 @@ static int parsedata(const char *arg, t_node **a)
     return (1);
 }
 
-static int parseflags(const char *arg, t_flag *f)
+int parseflags(const char *arg, t_flag *f)
 {
     int strat;
 
@@ -137,7 +137,7 @@ static int parseflags(const char *arg, t_flag *f)
     return (1);
 }
 
-static t_flag *flags_init()
+t_flag *flags_init()
 {
     t_flag *f;
     f = malloc(sizeof(t_flag));
@@ -148,7 +148,7 @@ static t_flag *flags_init()
     return (f);
 }
 
-static int checkarg(const char *arg)
+int checkarg(const char *arg)
 {
     if (!ft_strncmp(arg, "--", 2))
         return ('f');
@@ -156,7 +156,7 @@ static int checkarg(const char *arg)
         return ('d');
 }
 
-static int parseargs(int count, char **args, t_node **a, t_flag *f)
+int parseargs(int count, char **args, t_node **a, t_flag *f)
 {
     int i;
 
@@ -203,34 +203,4 @@ void sort(t_node *a, t_node *b, t_flag *f)
         rangebased_sort(&a, &b);
     else if (f->strategy == 4)
         radix_sort(&a, &b);
-}
-
-int main(int argc, char **argv)
-{
-    t_node *a;
-    t_node *b;
-    t_flag *f;
-
-    if (argc < 2)
-        return (0);
-    a = NULL;
-    b = NULL;
-    f = flags_init();
-    // if (f == NULL)
-    //     return (error);
-    if (!parseargs(argc, argv, &a, f))
-    {
-        write(2, "Error\n", 6);
-        return (0);
-    }
-    if (!no_doubles(a))
-    {
-        printf("Doubles found\n");
-        write(2, "Error\n", 6);
-        return (0);
-    }
-    // print_stack(a);
-    sort(a, b, f);
-    // print_stack(a);
-    return (1);
 }

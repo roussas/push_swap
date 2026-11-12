@@ -80,7 +80,7 @@ t_node *str_to_node(char *s)
     i = count_numbers(l) - 1;
     while (i >= 0)
     {
-        n = new_t_node(ft_atoi(l[i]));
+        n = new_t_node((int)ft_atol(l[i]));
         if (n == NULL)
         {
             free_stack(&a);

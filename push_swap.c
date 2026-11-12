@@ -12,49 +12,32 @@
 
 #include "push_swap.h"
 
-int	ft_atoi(const char *nptr)
-{
-	int	i;
-	int	k;
-	int	sign;
-
-	i = 0;
-	k = 0;
-	sign = 1;
-	while (nptr[i] == ' ' || (nptr[i] >= 9 && nptr[i] <= 13))
-		i++;
-	if (nptr[i] == '+' || nptr[i] == '-')
-	{
-		if (nptr[i] == '-')
-			sign *= -1;
-		i++;
-	}
-	while (nptr[i] >= '0' && nptr[i] <= '9')
-	{
-		k = 10 * k + nptr[i] - '0';
-		i++;
-	}
-	return (k * sign);
-}
-
-t_node *list(char **s,int i)
+int main(int argc, char **argv)
 {
     t_node *a;
-    t_node *tmp;
+    t_node *b;
+    t_flag *f;
 
+    if (argc < 2)
+        return (0);
     a = NULL;
-    while (s[i])
-    {   
-        if (is_valid_int(s[i]))
-            tmp = str_to_node(s[i]);
-        else
-        {
-            write(2,"Error\n",6);
-            return (NULL);
-        }
-        i++;
-        add_back(&a,tmp);
-        tmp = NULL;
+    b = NULL;
+    f = flags_init();
+    // if (f == NULL)
+    //     return (error);
+    if (!parseargs(argc, argv, &a, f))
+    {
+        write(2, "Error\n", 6);
+        return (0);
     }
-    return (a);
+    if (!no_doubles(a))
+    {
+        printf("Doubles found\n");
+        write(2, "Error\n", 6);
+        return (0);
+    }
+    // print_stack(a);
+    sort(a, b, f);
+    // print_stack(a);
+    return (1);
 }
