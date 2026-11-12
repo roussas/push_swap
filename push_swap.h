@@ -58,5 +58,6 @@ double  compute_disorder(t_node *stack);
 void    insertion(t_node **a, t_node **b);
 void    chunkbased(t_node **a, t_node **b);
 void 	radix_sort(t_node **a, t_node **b);
+int is_int(char *s);
 
 #endif

@@ -59,28 +59,3 @@ static int	print_error(t_node **a)
 	write(2, "Error\n", 6);
 	return (1);
 }
-
-int	main(int argc, char **argv)
-{
-	t_node	*a;
-	t_node	*b;
-
-	if (argc == 1)
-		return (0);
-	a = list(argv, 1);
-	b = NULL;
-	if (a == NULL || !no_doubles(a))
-		return (print_error(&a));
-	if (!is_sorted(a))
-	{
-		if (stack_length(a) <= 5)
-			insertion(&a, &b);
-		else if (stack_length(a) <= 500)
-			chunkbased(&a, &b)
-		else
-			radix_sort(&a, &b);
-	}
-	free_stack(&a);
-	free_stack(&b);
-	return (0);
-}
