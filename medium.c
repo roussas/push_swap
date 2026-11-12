@@ -24,46 +24,49 @@ static int findmax_n(t_node *stack, int n)
     return (max_index);
 }
 
-void    rangebased_insertion(t_node **tobesorted, t_node **otherone, int n)
+// Changed the parameters to the stack names to be more easily read
+//pa/pb
+// printed the opposite of what really happened.
+void    rangebased_insertion(t_node **a, t_node **b, int n)
 {
     int len;
-    int minpos;
     int maxpos;
     int i;
     int j;
-
-    len = stack_length(*tobesorted);
-    // printf("count_push: %d\n", n);
-    if(!(*tobesorted) || !tobesorted)
+    //removed the unused variable minpos
+    // Check before using the pointers 
+    if (!a || !b || !(*b))
         return ;
+    len = stack_length(*b);
     i = 0;
     while (i < n)
     {
-        // minpos = findmin_n(*tobesorted, n - i);
-        maxpos = findmax_n(*tobesorted, n - i);
+        maxpos = findmax_n(*b, n - i);
         j = 0;
         while (j < maxpos)
         {
-            rb(tobesorted);
+            rb(b);
             j++;
         }
-        pb(tobesorted, otherone);
+        // this moves the top of b onto a, so the right name is pa
+        // (before: pb(tobesorted, otherone) moved b->a but printed pb
+        pa(a, b);
         if (n < len)
         {
             j = 0;
             while (j < maxpos)
             {
-                rrb(tobesorted);
+                rrb(b);
                 j++;
             }
         }
         i++;
-        // stack contains sorted bits from previous ranges, rotate back, find new minimum, rotate, push, rotate back, repeat for size n
     }
     while (n > 0)
     {
-        // printf("step: %d\n", n);
-        pa(tobesorted, otherone);
+        //this moves the top of a back onto b, so the right name is pb
+        // before: pa(tobesorted, otherone) moved a->b but printed pa
+        pb(a, b);
         n--;
     }
 }
@@ -111,17 +114,26 @@ void rangebased_sort(t_node **a, t_node **b)
     int dist;
     int i;
 
+    //empty stack made sqrt_approx return 0 and "length % countrange"
+    // divided by zero fails
+    if (!a || !(*a))
+        return ;
     rank_list(a);
     length = stack_length(*a);
-    countrange = sqrt_approx(length);
     dist = countrange;
-    if (length % countrange)
-        countrange++;
+    // Before: "if (length % countrange) countrange++" added one extra pass,
+    //  but length can be up to dist*dist + 2*dist, which needs
+    // up to two extra passes . The ranks above
+    // dist * countrange were never pushed, so they stayed unsorted in a.
+    // length >= 1 here, so dist >= 1 and there is no division by zero.
+    countrange = (length + dist - 1) / dist;
     i = 0;
     while (i < countrange)
     {
         pushcount = pushrange(a, b, dist * (i + 1));
-        rangebased_insertion(b, a, pushcount);
+        // pass the stacks in their real order (a, b)
+        // before: rangebased_insertion(b, a, ...)
+        rangebased_insertion(a, b, pushcount);
         i++;
     }
     while (*b)

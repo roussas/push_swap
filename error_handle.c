@@ -1,6 +1,5 @@
 #include "push_swap.h"
 #include <stdio.h>
-#include <limits.h>
 
 int is_valid_int(char *s)
 {
@@ -108,10 +107,14 @@ int is_int(char *s)
     while (l[i])
     {
         n = ft_atol(l[i]);
-        if(n < -2147483647 || n > 2147483647)
+        if(n < -2147483648 || n > 2147483647)
+        {
+            free_list(l);
             return (0);
+        }
         i++;
     }
+    free_list(l);
     return (1);
 }
 
@@ -129,7 +132,7 @@ t_node *str_to_node(char *s)
     i = count_numbers(l) - 1;
     while (i >= 0)
     {
-        n = new_t_node(ft_atol(l[i]));
+        n = new_t_node(ft_atoi(l[i]));
         if (n == NULL)
         {
             free_stack(&a);

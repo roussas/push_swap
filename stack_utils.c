@@ -14,7 +14,7 @@
 //THIS IS STUFF FOR HANDLING THE LINKED LIST AS WELL 
 //MAYBE THE FUNCTIONS FROM LIBFT ARE BETTER , BUT YEAH... WE WILL SEE
 
-t_node	*new_t_node(long value)
+t_node	*new_t_node(int value)
 {
 	t_node	*new;
 
@@ -72,17 +72,16 @@ void	free_stack(t_node **stack)
 		*stack = tmp;
 	}
 }
+// int is_sorted(t_node **a)
+// {
+// 	t_node *stack;
 
-int is_sorted(t_node **a)
-{
-	t_node *stack;
-
-	stack = *a;
-	while (stack->next != NULL)
-	{
-		if (stack->value > stack->next->value)
-			return(0);
-		stack = stack->next;
-	}
-	return (1);
-}
+// 	stack = *a;
+// 	while (stack->next != NULL)
+// 	{
+// 		if (stack->value > stack->next->value)
+// 			return(0);
+// 		stack = stack->next;
+// 	}
+// 	return (1);
+// }

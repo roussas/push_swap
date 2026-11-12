@@ -33,6 +33,8 @@ long	ft_atol(const char *nptr)
 	{
 		k = 10 * k + nptr[i] - '0';
 		i++;
+		if(k > 2147483648)
+			return(k);
 	}
 	return (k * sign);
 }
