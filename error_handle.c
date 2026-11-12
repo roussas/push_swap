@@ -32,6 +32,8 @@ void free_list (char **l)
 {
     int i;
 
+    if (l == NULL)
+        return;
     i = 0;
     while(l[i])
     {
@@ -55,6 +57,8 @@ void add_back(t_node **a, t_node *new)
 {
     t_node  *last;
 
+    if (a == NULL || new == NULL)
+		return ;
     if (*a == NULL)
     {
         *a = new;
@@ -69,7 +73,7 @@ void add_back(t_node **a, t_node *new)
 int no_doubles(t_node *a)
 {
     t_node *tmp;
-    t_node *prp;
+    t_node *current;
     int     counter;
 
     counter = 0;
@@ -98,10 +102,10 @@ int is_int(char *s)
     long     n;
     int     i;
 
-    i = 0;
     l = ft_split(s,' ');
     if (l == NULL)
         return (0);
+    i = 0;
     while (l[i])
     {
         n = ft_atol(l[i]);
@@ -142,4 +146,11 @@ t_node *str_to_node(char *s)
     }
     free_list(l);
     return (a);
+}
+
+int	print_error(t_node **a)
+{
+	free_stack(a);
+	write(2, "Error\n", 6);
+	return (1);
 }

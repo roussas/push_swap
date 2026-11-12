@@ -11,8 +11,6 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-//THIS IS STUFF FOR HANDLING THE LINKED LIST AS WELL 
-//MAYBE THE FUNCTIONS FROM LIBFT ARE BETTER , BUT YEAH... WE WILL SEE
 
 t_node	*new_t_node(int value)
 {
@@ -22,29 +20,29 @@ t_node	*new_t_node(int value)
 	if (new == NULL)
 		return (NULL);
 	new->value = value;
+	new -> rank = 0;
 	new->next = NULL;
 	return (new);
 }
-//TAKE A NODE AND PUT IT FIRST
+
 void	push_top(t_node **stack, t_node *new)
 {
-	if (new == NULL)
+	if (new == NULL || stack == NULL)
 		return ;
 	new->next = *stack;
 	*stack = new;
 }
-//REMOVE THE TOP OF THE LIST BUT DONT LOSE IT 
+
 t_node	*pop_top(t_node **stack)
 {
 	t_node	*tmp;
 	t_node	*pop;
 
-	if (*stack == NULL)
+	if (*stack == NULL || stack == NULL)
 		return (NULL);
-	tmp = (*stack)->next;
-	(*stack)->next = NULL;
 	pop = *stack;
-	*stack = tmp;
+	*stack = (*stack)->next;
+	pop->next = NULL;
 	return (pop);
 }
 
@@ -65,6 +63,8 @@ void	free_stack(t_node **stack)
 {
 	t_node	*tmp;
 
+	if (stack == NULL)
+		return ;
 	while (*stack)
 	{
 		tmp = (*stack)->next;

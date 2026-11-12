@@ -1,11 +1,4 @@
 #include "push_swap.h"
-#include <stdio.h>
-
-// Find minimum in a
-// Rotate minimum to top of a
-// Push top of a to b
-// Repeat as long as there are values in a
-// Push sequentially from b to a
 
 static int findmin(t_node *stack)
 {
@@ -40,19 +33,13 @@ static void rotatetotop(t_node **stack, int count)
         return ;
     if (count <= len / 2)
     {
-        while (count > 0)
-        {
+        while (count-- > 0)
             ra(stack);
-            count--;
-        }
     }
     else
     {
-        while (count < len)
-        {
+        while (count++ < len)
             rra(stack);
-            count++;
-        }
     }
 }
 
@@ -60,8 +47,8 @@ void    insertion(t_node **a, t_node **b)
 {
     int count;
 
-    if(!(*a) || !a)
-        return ;
+	if (a == NULL || *a == NULL)
+		return ;
     while ((*a)->next)
     {
         count = findmin(*a);
