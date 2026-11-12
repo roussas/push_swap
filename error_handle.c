@@ -78,18 +78,17 @@ int no_doubles(t_node *a)
 
     counter = 0;
     tmp = a;
-    prp = a;
     while (tmp)
     {
-        while (prp)
+        while (current)
         {
-            if(tmp->value == prp->value)
+            if(tmp->value == current->value)
                 counter++;
-            prp = prp->next;
+            current = current->next;
         }
         if (counter != 1)
             return (0);
-        prp = a;
+        current = a;
         tmp = tmp->next;
         counter = 0;
     }
