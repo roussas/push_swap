@@ -70,29 +70,24 @@ void add_back(t_node **a, t_node *new)
     last->next = new;
 }
 
-int no_doubles(t_node *a)
+int	no_doubles(t_node *a)
 {
-    t_node *tmp;
-    t_node *current;
-    int     counter;
+	t_node	*tmp;
+	t_node	*current;
 
-    counter = 0;
-    tmp = a;
-    while (tmp)
-    {
-        while (current)
-        {
-            if(tmp->value == current->value)
-                counter++;
-            current = current->next;
-        }
-        if (counter != 1)
-            return (0);
-        current = a;
-        tmp = tmp->next;
-        counter = 0;
-    }
-    return (1);
+	tmp = a;
+	while (tmp)
+	{
+		current = tmp->next;
+		while (current)
+		{
+			if (tmp->value == current->value)
+				return (0);
+			current = current->next;
+		}
+		tmp = tmp->next;
+	}
+	return (1);
 }
 
 int is_int(char *s)

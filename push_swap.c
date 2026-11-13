@@ -105,13 +105,11 @@ int main (int argc , char **argv)
 
 	a = NULL;
 	b = NULL;
-	i = 1;
-	if (argc == 1)
+	i = 2;
+	if (argc < 2)
 		return (1);
-	i++;
-	write(1,"here",4);
 	a = list(argv,i);
-	if (a == NULL)
+	if (a == NULL || !no_doubles(a))
 		print_error(&a);
 	a = str_sel(argv[1],&a , &b);
 	free_stack(&a);
