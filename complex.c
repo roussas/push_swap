@@ -7,16 +7,16 @@ int rank_set(t_node *node, t_node **a)
 
     rank = 0;
     tmp = *a;
-    while(tmp != NULL)
+    while (tmp != NULL)
     {
         if (node->value > tmp->value)
-        rank++;
+            rank++;
         tmp = tmp->next;
     }
     return (rank);
 }
 
-void rank_list (t_node **a)
+void rank_list(t_node **a)
 {
     t_node *tmp;
 
@@ -25,8 +25,8 @@ void rank_list (t_node **a)
     tmp = *a;
     while (tmp != NULL)
     {
-        tmp->rank = rank_set(tmp,a);
-        tmp = tmp->next; 
+        tmp->rank = rank_set(tmp, a);
+        tmp = tmp->next;
     }
 }
 
@@ -64,18 +64,18 @@ void radix_sort(t_node **a, t_node **b)
     rank_list(a);
     i = 0;
     bits = max_bits(a);
-    while( i < bits)
+    while (i < bits)
     {
         size = stack_length(*a);
-        while(size-- > 0)
+        while (size-- > 0)
         {
             if (((*a)->rank & (1 << i)) == 0)
-                pb(a,b);
+                pb(a, b);
             else
                 ra(a);
         }
-        while(*b)
-            pa(a,b);
+        while (*b)
+            pa(a, b);
         i++;
     }
 }

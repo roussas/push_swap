@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: kpagkalo <kpagkalo@student.42vienna.c      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/10/27 13:34:25 by kpagkalo          #+#    #+#             */
-/*   Updated: 2026/10/27 13:52:14 by kpagkalo         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
@@ -18,7 +6,7 @@
 
 typedef struct t_node
 {
-	int			value;
+	int				value;
 	int				rank;
 	struct t_node	*next;
 }	t_node;
@@ -43,23 +31,23 @@ void	reverse_rotate(t_node **stack);
 void	rotate(t_node **stack);
 void	swap(t_node **stack);
 void	push_to(t_node **from, t_node **to);
-int 	rank_set(t_node *node, t_node **a);
-void 	rank_list (t_node **a);
-int 	max_bits(t_node **a);
+int		rank_set(t_node *node, t_node **a);
+void	rank_list(t_node **a);
+int		max_bits(t_node **a);
 long	ft_atol(const char *nptr);
 char	**ft_split(char const *s, char c);
-int 	is_valid_int(char *s);
-void 	free_list (char **l);
-t_node 	*str_to_node(char *s);
-void 	add_back(t_node **a, t_node *new);
+int		is_valid_int(char *s);
+void	free_list(char **l);
+t_node	*str_to_node(char *s);
+void	add_back(t_node **a, t_node *new);
 int		no_doubles(t_node *a);
 int		ft_atoi(const char *nptr);
-double  compute_disorder(t_node *stack);
-void    insertion(t_node **a, t_node **b);
-void    chunkbased(t_node **a, t_node **b);
-void 	radix_sort(t_node **a, t_node **b);
-int 	is_int(char *s);
-void 	rangebased_sort(t_node **a, t_node **b);
-void 	adaptive(t_node **a, t_node **b);
+double	compute_disorder(t_node *stack);
+void	insertion(t_node **a, t_node **b);
+void	chunkbased(t_node **a, t_node **b);
+void	radix_sort(t_node **a, t_node **b);
+int		is_int(char *s);
+void	rangebased_sort(t_node **a, t_node **b);
+void	adaptive(t_node **a, t_node **b);
 
 #endif
