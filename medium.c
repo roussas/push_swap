@@ -5,61 +5,66 @@ static int findmax_n(t_node *stack, int n)
     int max_index;
     int current_index;
     t_node *max_node;
+    t_node *current;
 
-    if (!stack)
-        return (0);
+    if (!stack || n <= 0)
+        return (-1);
     max_index = 0;
     current_index = 0;
     max_node = stack;
-    while (current_index < n)
+    current = stack;
+    while (current && current_index < n)
     {
-        if (stack->value > max_node->value)
+        if (current->value > max_node->value)
         {
-            max_node = stack;
+            max_node = current;
             max_index = current_index;
         }
-        stack = stack->next;
+        current = current->next;
         current_index++;
     }
     return (max_index);
 }
 
-void    rangebased_insertion(t_node **tobesorted, t_node **otherone, int n)
+void    rangebased_insertion(t_node **a, t_node **b, int n)
 {
     int len;
     int maxpos;
     int i;
     int j;
 
-    len = stack_length(*tobesorted);
-    if(!(*tobesorted) || !tobesorted)
+    if (!a || !b || !(*b) || n <= 0)
         return ;
+    len = stack_length(*b);
     i = 0;
     while (i < n)
     {
-        maxpos = findmax_n(*tobesorted, n - i);
+        maxpos = findmax_n(*b, n - i);
+        if (maxpos < 0)
+            return ;
         j = 0;
         while (j < maxpos)
         {
-            rb(tobesorted);
+            rb(b);
             j++;
         }
-        pb(tobesorted, otherone);
+        pa(a, b);
         if (n < len)
         {
             j = 0;
             while (j < maxpos)
             {
-                rrb(tobesorted);
+                rrb(b);
                 j++;
             }
         }
         i++;
     }
-    while (n > 0)
+    j = 0;
+    while (j < n)
     {
-        pa(tobesorted, otherone);
-        n--;
+        pb(a, b);
+        j++;
     }
 }
 
@@ -106,17 +111,19 @@ void rangebased_sort(t_node **a, t_node **b)
     int dist;
     int i;
 
+    if (!a || !(*a))
+        return ;
     rank_list(a);
     length = stack_length(*a);
-    countrange = sqrt_approx(length);
-    dist = countrange;
-    if (length % countrange)
-        countrange++;
+    dist = sqrt_approx(length);
+    if (dist <= 0)
+        return ;
+    countrange = (length + dist - 1) / dist;
     i = 0;
     while (i < countrange)
     {
-        pushcount = pushrange(a, b, dist * (i + 1));
-        rangebased_insertion(b, a, pushcount);
+        pushcount = pushrange(a, b, dist * (i + 1) - 1);
+        rangebased_insertion(a, b, pushcount);
         i++;
     }
     while (*b)

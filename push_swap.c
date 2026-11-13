@@ -97,21 +97,27 @@ t_node *str_sel(char *s, t_node **a, t_node **b)
 	return (*a);
 }
 
-int main (int argc , char **argv)
+
+int	main(int argc, char **argv)
 {
-	t_node *a;
-	t_node *b;
+	t_node	*a;
+	t_node	*b;
 	int		i;
 
 	a = NULL;
 	b = NULL;
-	i = 2;
+	i = 1;
 	if (argc < 2)
-		return (1);
-	a = list(argv,i);
+		return (0);
+	if (argv[1][0] == '-' && argv[1][1] == '-')
+		i = 2;
+	a = list(argv, i);
 	if (a == NULL || !no_doubles(a))
 		print_error(&a);
-	a = str_sel(argv[1],&a , &b);
+	if (i == 2)
+		a = str_sel(argv[1], &a, &b);
+	else
+		adaptive(&a, &b);
 	free_stack(&a);
 	free_stack(&b);
 	return (0);
