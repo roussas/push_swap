@@ -19,10 +19,8 @@ static void	sort_three(t_node **a)
 
 static int	find_insert_pos(t_node *b, int value)
 {
-	int	pos;
 	int	i;
 
-	pos = 0;
 	i = 0;
 	while (b)
 	{

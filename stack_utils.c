@@ -1,143 +1,73 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kpagkalo <kpagkalo@student.42vienna.c      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+          +#+   */
+/*   Created: 2026/10/27 13:34:35 by kpagkalo          #+#    #+#             */
+/*   Updated: 2026/10/27 13:50:57 by kpagkalo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
-#include <stdio.h>
 
-int is_valid_int(char *s)
+t_node	*new_t_node(int value)
 {
-	int	i;
-	int	digits;
+	t_node	*new;
 
-	if (s == NULL)
-		return (0);
-	i = 0;
-	digits = 0;
-	while (s[i])
-	{
-		if (s[i] >= '0' && s[i] <= '9')
-			digits++;
-		else if (s[i] == '+' || s[i] == '-')
-		{
-			if (!(s[i + 1] >= '0' && s[i + 1] <= '9'))
-				return (0);
-			if (i != 0 && s[i - 1] != ' ')
-				return (0);
-		}
-		else if (s[i] != ' ')
-			return (0);
-		i++;
-	}
-	return (digits > 0);
+	new = malloc(sizeof(t_node));
+	if (new == NULL)
+		return (NULL);
+	new->value = value;
+	new->rank = 0;
+	new->next = NULL;
+	return (new);
 }
 
-void	free_list(char **l)
+void	push_top(t_node **stack, t_node *new)
 {
-	int	i;
-
-	if (l == NULL)
+	if (new == NULL || stack == NULL)
 		return ;
-	i = 0;
-	while (l[i])
-	{
-		free(l[i]);
-		i++;
-	}
-	free(l);
+	new->next = *stack;
+	*stack = new;
 }
 
-static int count_numbers(char **l)
+t_node	*pop_top(t_node **stack)
+{
+	t_node	*pop;
+
+	if (*stack == NULL || stack == NULL)
+		return (NULL);
+	pop = *stack;
+	*stack = (*stack)->next;
+	pop->next = NULL;
+	return (pop);
+}
+
+int	stack_length(t_node *stack)
 {
 	int	i;
 
 	i = 0;
-	while (l[i])
+	while (stack)
+	{
+		stack = stack->next;
 		i++;
+	}
 	return (i);
 }
 
-void add_back(t_node **a, t_node *new)
-{
-	t_node	*last;
-
-	if (a == NULL || new == NULL)
-		return ;
-	if (*a == NULL)
-	{
-		*a = new;
-		return ;
-	}
-	last = *a;
-	while (last->next)
-		last = last->next;
-	last->next = new;
-}
-
-int	no_doubles(t_node *a)
+void	free_stack(t_node **stack)
 {
 	t_node	*tmp;
-	t_node	*current;
 
-	tmp = a;
-	while (tmp)
+	if (stack == NULL)
+		return ;
+	while (*stack)
 	{
-		current = tmp->next;
-		while (current)
-		{
-			if (tmp->value == current->value)
-				return (0);
-			current = current->next;
-		}
-		tmp = tmp->next;
+		tmp = (*stack)->next;
+		free(*stack);
+		*stack = tmp;
 	}
-	return (1);
-}
-
-int is_int(char *s)
-{
-	char	**l;
-	long	n;
-	int		i;
-
-	l = ft_split(s, ' ');
-	if (l == NULL)
-		return (0);
-	i = 0;
-	while (l[i])
-	{
-		n = ft_atol(l[i]);
-		if (n < -2147483648 || n > 2147483647)
-		{
-			free_list(l);
-			return (0);
-		}
-		i++;
-	}
-	free_list(l);
-	return (1);
-}
-
-t_node	*str_to_node(char *s)
-{
-	char	**l;
-	int		i;
-	t_node	*a;
-	t_node	*n;
-
-	a = NULL;
-	l = ft_split(s, ' ');
-	if (l == NULL)
-		return (NULL);
-	i = count_numbers(l) - 1;
-	while (i >= 0)
-	{
-		n = new_t_node(ft_atoi(l[i]));
-		if (n == NULL)
-		{
-			free_stack(&a);
-			free_list(l);
-			return (NULL);
-		}
-		push_top(&a, n);
-		i--;
-	}
-	free_list(l);
-	return (a);
 }
