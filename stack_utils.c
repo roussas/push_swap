@@ -35,7 +35,6 @@ void	push_top(t_node **stack, t_node *new)
 
 t_node	*pop_top(t_node **stack)
 {
-	t_node	*tmp;
 	t_node	*pop;
 
 	if (*stack == NULL || stack == NULL)

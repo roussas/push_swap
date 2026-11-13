@@ -50,7 +50,7 @@ long	ft_atol(const char *nptr);
 char	**ft_split(char const *s, char c);
 int 	is_valid_int(char *s);
 void 	free_list (char **l);
-t_node *str_to_node(char *s);
+t_node 	*str_to_node(char *s);
 void 	add_back(t_node **a, t_node *new);
 int		no_doubles(t_node *a);
 int		ft_atoi(const char *nptr);
@@ -58,8 +58,8 @@ double  compute_disorder(t_node *stack);
 void    insertion(t_node **a, t_node **b);
 void    chunkbased(t_node **a, t_node **b);
 void 	radix_sort(t_node **a, t_node **b);
-int is_int(char *s);
-void rangebased_sort(t_node **a, t_node **b);
-void *adaptive(t_node **a, t_node **b);
+int 	is_int(char *s);
+void 	rangebased_sort(t_node **a, t_node **b);
+void 	adaptive(t_node **a, t_node **b);
 
 #endif

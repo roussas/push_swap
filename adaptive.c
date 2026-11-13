@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void *adaptive(t_node **a, t_node **b)
+void adaptive(t_node **a, t_node **b)
 {
     double dis;
 
@@ -9,6 +9,6 @@ void *adaptive(t_node **a, t_node **b)
         insertion(a,b);
     else if (dis >= 0.2 && dis < 0.5)
         rangebased_sort(a,b);
-    else if (dis >= 0.5)
+    else
         radix_sort(a, b);
 }

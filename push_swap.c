@@ -42,17 +42,6 @@ t_node	*list(char **s, int i)
 	return (a);
 }
 
-static int	is_sorted(t_node *a)
-{
-	while (a && a->next)
-	{
-		if (a->value > a->next->value)
-			return (0);
-		a = a->next;
-	}
-	return (1);
-}
-
 static int	print_error(t_node **a)
 {
 	free_stack(a);
@@ -108,28 +97,15 @@ t_node *str_sel(char *s, t_node **a, t_node **b)
 	return (*a);
 }
 
-#include <stdio.h>
-
-void	print_stack(t_node * stack)
-{
-	while (stack)
-	{
-		printf("%i\n", stack->value);
-		stack = stack->next;
-	}
-}
-
 int main (int argc , char **argv)
 {
 	t_node *a;
 	t_node *b;
 	int		i;
-	int		k;
 
 	a = NULL;
 	b = NULL;
 	i = 1;
-	k = 0;
 	if (argc == 1)
 		return (1);
 	i++;
@@ -138,7 +114,6 @@ int main (int argc , char **argv)
 	if (a == NULL)
 		print_error(&a);
 	a = str_sel(argv[1],&a , &b);
-	print_stack(a);
 	free_stack(&a);
 	free_stack(&b);
 	return (0);

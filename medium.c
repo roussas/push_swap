@@ -27,19 +27,16 @@ static int findmax_n(t_node *stack, int n)
 void    rangebased_insertion(t_node **tobesorted, t_node **otherone, int n)
 {
     int len;
-    int minpos;
     int maxpos;
     int i;
     int j;
 
     len = stack_length(*tobesorted);
-    // printf("count_push: %d\n", n);
     if(!(*tobesorted) || !tobesorted)
         return ;
     i = 0;
     while (i < n)
     {
-        // minpos = findmin_n(*tobesorted, n - i);
         maxpos = findmax_n(*tobesorted, n - i);
         j = 0;
         while (j < maxpos)
@@ -58,11 +55,9 @@ void    rangebased_insertion(t_node **tobesorted, t_node **otherone, int n)
             }
         }
         i++;
-        // stack contains sorted bits from previous ranges, rotate back, find new minimum, rotate, push, rotate back, repeat for size n
     }
     while (n > 0)
     {
-        // printf("step: %d\n", n);
         pa(tobesorted, otherone);
         n--;
     }
