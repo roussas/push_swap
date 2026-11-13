@@ -59,5 +59,7 @@ void    insertion(t_node **a, t_node **b);
 void    chunkbased(t_node **a, t_node **b);
 void 	radix_sort(t_node **a, t_node **b);
 int is_int(char *s);
+void rangebased_sort(t_node **a, t_node **b);
+void *adaptive(t_node **a, t_node **b);
 
 #endif

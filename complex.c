@@ -20,7 +20,7 @@ void rank_list (t_node **a)
 {
     t_node *tmp;
 
-    if (a == NULL)
+    if (a == NULL || *a == NULL)
         return ;
     tmp = *a;
     while (tmp != NULL)

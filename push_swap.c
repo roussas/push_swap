@@ -59,3 +59,87 @@ static int	print_error(t_node **a)
 	write(2, "Error\n", 6);
 	return (1);
 }
+
+int	comp(char *s1, char *s2)
+{
+	int	i;
+
+	i = 0;
+	while (s1[i] && s2[i])
+	{
+		if (s1[i] != s2[i])
+			return (0);
+		i++;
+	}
+	if (s1[i] == s2[i])
+		return (1);
+	return (0);
+}
+
+int	ft_strcmp(char *s)
+{
+	char	*simple = "--simple";
+	char	*medium = "--medium";
+	char	*complex = "--complex";
+	char	*adaptive = "--adaptive";
+
+	if (comp(s, simple))
+		return (1);
+	else if (comp(s, medium))
+		return (2);
+	else if (comp(s, complex))
+		return (3);
+	else if (comp(s, adaptive))
+		return (4);
+	else
+		return (0);
+}
+
+t_node *str_sel(char *s, t_node **a, t_node **b)
+{
+	if(ft_strcmp(s) == 1)
+		insertion(a,b);
+	else if (ft_strcmp(s) == 2)
+		rangebased_sort(a,b);
+	else if (ft_strcmp(s) == 3)
+		radix_sort(a,b);	
+	else
+		adaptive(a,b);
+	return (*a);
+}
+
+#include <stdio.h>
+
+void	print_stack(t_node * stack)
+{
+	while (stack)
+	{
+		printf("%i\n", stack->value);
+		stack = stack->next;
+	}
+}
+
+int main (int argc , char **argv)
+{
+	t_node *a;
+	t_node *b;
+	int		i;
+	int		k;
+
+	a = NULL;
+	b = NULL;
+	i = 1;
+	k = 0;
+	if (argc == 1)
+		return (1);
+	i++;
+	write(1,"here",4);
+	a = list(argv,i);
+	if (a == NULL)
+		print_error(&a);
+	a = str_sel(argv[1],&a , &b);
+	print_stack(a);
+	free_stack(&a);
+	free_stack(&b);
+	return (0);
+}
