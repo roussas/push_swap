@@ -8,7 +8,7 @@ PARSE_SRCS	= src/parse/disorder.c \
 			  src/parse/ft_split.c \
 			  src/parse/atoi_utils.c \
 			  src/parse/parse_args.c \
-			  src/parse/parse_arg_extra
+			  src/parse/parse_arg_extra.c 
 SORT_SRCS	= src/sort/complex.c \
 			  src/sort/insertion.c \
 			  src/sort/medium.c		\
@@ -17,8 +17,7 @@ STACK_SRCS  = src/stack/ops_logic.c \
 			  src/stack/ops_rotate.c \
 			  src/stack/ops_swap_push.c \
 			  src/stack/stack_utils.c \
-			  src/stack/extra_utils.c \
-			  src/stack/str_utils.c
+			  src/stack/extra_utils.c 
 SRCS		= src/push_swap.c \
 			  $(PARSE_SRCS) \
 			  $(SORT_SRCS) \

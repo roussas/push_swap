@@ -6,7 +6,7 @@
 /*   By: username <username@student.42tokyo.jp>    #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/14 15:32:21 by username         #+#    #+#              */
-/*   Updated: 2026/11/14 15:32:54 by username        ###   ########.fr        */
+/*   Updated: 2026/11/14 15:44:35 by username        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,30 @@ int	parseflags(const char *arg, t_flag *f)
 		return (0);
 	f->strategy = strat;
 	return (1);
+}
+
+int	is_valid_data(char *s)
+{
+	if (!is_valid_int(s))
+		return (0);
+	if (!is_int(s))
+		return (0);
+	return (1);
+}
+
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	if (n > 0)
+	{
+		n--;
+		while (n && *s1 && *s2 && (*s1 == *s2))
+		{
+			s1++;
+			s2++;
+			n--;
+		}
+		return (*(unsigned char *) s1 - *(unsigned char *) s2);
+	}
+	else
+		return (0);
 }
