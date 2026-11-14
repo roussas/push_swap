@@ -54,27 +54,27 @@ int	parseargs(int count, char **args, t_node **a, t_flag *f)
 	return (1);
 }
 
-void	adaptive_sort(t_node *a, t_node *b)
+void	adaptive_sort(t_node **a, t_node **b)
 {
-	float	disorder;
+	double	disorder;
 
-	disorder = compute_disorder(a);
+	disorder = compute_disorder(*a);
 	if (disorder < 0.2)
-		insertion(&a, &b);
-	else if ((0.2 <= disorder) && (disorder < 0.5))
-		rangebased_sort(&a, &b);
-	else if (disorder >= 0.5)
-		radix_sort(&a, &b);
+		insertion(a, b);
+	else if (disorder < 0.5)
+		rangebased_sort(a, b);
+	else
+		radix_sort(a, b);
 }
 
-void	sort(t_node *a, t_node *b, t_flag *f)
+void	sort(t_node **a, t_node **b, t_flag *f)
 {
 	if (f->strategy == 0 || f->strategy == 8)
 		adaptive_sort(a, b);
 	else if (f->strategy == 1)
-		insertion(&a, &b);
+		insertion(a, b);
 	else if (f->strategy == 2)
-		rangebased_sort(&a, &b);
+		rangebased_sort(a, b);
 	else if (f->strategy == 4)
-		radix_sort(&a, &b);
+		radix_sort(a, b);
 }

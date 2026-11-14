@@ -12,9 +12,10 @@
 
 #include "push_swap.h"
 
-static int	print_error(t_node **a)
+static int	print_error(t_node **a,	t_flag	*f)
 {
 	free_stack(a);
+	free(f);
 	write(2, "Error\n", 6);
 	return (1);
 }
@@ -40,17 +41,14 @@ int	main(int argc, char **argv)
 	a = NULL;
 	b = NULL;
 	f = flags_init();
-	if (!parseargs(argc, argv, &a, f))
+	if (f == NULL)
+		return (1);
+	if (!parseargs(argc, argv, &a, f) || !no_doubles(a))
 	{
-		print_error(&a);
+		print_error(&a,f);
 		return (0);
 	}
-	if (!no_doubles(a))
-	{
-		print_error(&a);
-		return (0);
-	}
-	sort(a, b, f);
+	sort(&a, &b, f);
 	free_stack(&a);
 	free_stack(&b);
 	free(f);

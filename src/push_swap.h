@@ -84,7 +84,6 @@ void	chunkbased(t_node **a, t_node **b);
 void	radix_sort(t_node **a, t_node **b);
 int		is_int(char *s);
 void	rangebased_sort(t_node **a, t_node **b);
-void	adaptive(t_node **a, t_node **b);
 int		findmax_n(t_node *stack, int n);
 int		sqrt_approx(int nb);
 int		count_numbers(char **l);
@@ -103,8 +102,8 @@ int parseflags(const char *arg, t_flag *f);
 t_flag *flags_init();
 int checkarg(const char *arg);
 int parseargs(int count, char **args, t_node **a, t_flag *f);
-void adaptive_sort(t_node *a, t_node *b);
-void sort(t_node *a, t_node *b, t_flag *f);
+void	adaptive_sort(t_node **a, t_node **b);
+void	sort(t_node **a, t_node **b, t_flag *f);
 int	ft_strncmp(const char *s1, const char *s2, size_t n);
 
 #endif
