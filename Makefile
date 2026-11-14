@@ -3,7 +3,7 @@ CFLAGS  = -Wall -Wextra -Werror
 NAME    = push_swap
 
 SRCS    = complex.c disorder.c error_handle.c ft_split.c insertion.c medium.c ops_logic.c ops_rotate.c \
-          ops_swap_push.c push_swap.c stack_utils.c atoi_utils.c adaptive.c
+          ops_swap_push.c push_swap.c stack_utils.c atoi_utils.c adaptive.c extra_utils.c str_utils.c
 OBJS    = $(SRCS:.c=.o)
 
 all: $(NAME)
