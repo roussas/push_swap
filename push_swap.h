@@ -23,6 +23,24 @@ typedef struct t_node
 	struct t_node	*next;
 }	t_node;
 
+// typedef struct t_bench
+// {
+// 	double	disorder_n;
+// 	char    *strat;
+//     int     total_ops;
+//     int     sa;
+//     int     sb;
+//     int     ss;
+//     int     pa;
+//     int     pb;
+//     int     ra;
+//     int     rb;
+//     int     rr;
+//     int     rra;
+//     int     rrb;
+//     int     rrr;
+// } t_bench;
+
 void	pb(t_node **a, t_node **b);
 void	pa(t_node **a, t_node **b);
 void	ss(t_node **a, t_node **b);
