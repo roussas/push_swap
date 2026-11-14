@@ -6,7 +6,7 @@
 /*   By: username <username@student.42tokyo.jp>    #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/14 12:23:42 by username         #+#    #+#              */
-/*   Updated: 2026/11/14 13:10:13 by username        ###   ########.fr        */
+/*   Updated: 2026/11/14 13:19:06 by username        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,6 @@ int		pushrange(t_node **a, t_node **b, int rtop);
 void	rangebased_insertion(t_node **a, t_node **b, int n);
 void	sort_chunk(t_node **a, t_node **b, int n, int len);
 void	rotate_to(t_node **b, int pos, int reverse);
+void	sort_three(t_node **a);
 
 #endif

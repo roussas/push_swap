@@ -6,7 +6,7 @@
 /*   By: username <username@student.42tokyo.jp>    #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/14 12:26:23 by username         #+#    #+#              */
-/*   Updated: 2026/11/14 13:08:50 by username        ###   ########.fr        */
+/*   Updated: 2026/11/14 13:16:56 by username        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,4 +102,21 @@ int	findmax_n(t_node *stack, int n)
 		current_index++;
 	}
 	return (max_index);
+}
+
+void	sort_three(t_node **a)
+{
+	int	top;
+	int	mid;
+	int	bot;
+
+	top = (*a)->value;
+	mid = (*a)->next->value;
+	bot = (*a)->next->next->value;
+	if (top > mid && top > bot)
+		ra(a);
+	else if (mid > top && mid > bot)
+		rra(a);
+	if ((*a)->value > (*a)->next->value)
+		sa(a);
 }

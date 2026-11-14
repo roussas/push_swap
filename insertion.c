@@ -6,28 +6,11 @@
 /*   By: username <username@student.42tokyo.jp>    #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/14 12:23:15 by username         #+#    #+#              */
-/*   Updated: 2026/11/14 13:01:00 by username        ###   ########.fr        */
+/*   Updated: 2026/11/14 13:17:19 by username        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static void	sort_three(t_node **a)
-{
-	int	top;
-	int	mid;
-	int	bot;
-
-	top = (*a)->value;
-	mid = (*a)->next->value;
-	bot = (*a)->next->next->value;
-	if (top > mid && top > bot)
-		ra(a);
-	else if (mid > top && mid > bot)
-		rra(a);
-	if ((*a)->value > (*a)->next->value)
-		sa(a);
-}
 
 int	three_rule(t_node **a, int len)
 {
