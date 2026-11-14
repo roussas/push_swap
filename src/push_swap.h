@@ -25,17 +25,18 @@ typedef struct s_flag
 
 typedef struct s_bench
 {
-	int		cntpa;
-	int		cntpb;
-	int		cntsa;
-	int		cntsb;
-	int		cntss;
-	int		cntra;
-	int		cntrb;
-	int		cntrr;
-	int		cntrra;
-	int		cntrrb;
-	int		cntrrr;
+	double			disorder;
+	unsigned int	cntpa;
+	unsigned int	cntpb;
+	unsigned int	cntsa;
+	unsigned int	cntsb;
+	unsigned int	cntss;
+	unsigned int	cntra;
+	unsigned int	cntrb;
+	unsigned int	cntrr;
+	unsigned int	cntrra;
+	unsigned int	cntrrb;
+	unsigned int	cntrrr;
 }	t_bench;
 
 
@@ -93,14 +94,17 @@ int		no_doubles(t_node *a);
 int		rank_set(t_node *node, t_node **a);
 void	rank_list(t_node **a);
 
-double  compute_disorder(t_node *stack);
 // Sorting fork
 void	sort(t_node *a, t_node *b, t_flag **f, t_bench **bench);
 void	adaptive_sort(t_node *a, t_node *b, t_bench **bench);
 
 // Benchmarking
-t_bench	*bench_init(void);
-void	write_bench(t_bench *bench, t_flag *flag, t_node *a);
+t_bench	*bench_init(t_node *a);
+double  compute_disorder(t_node *stack);
+char	*strdisorder(double disorder);
+char	*ft_uitoa(unsigned int n);
+void	write_bench(t_bench *bench, t_flag *flag);
+void	write_counts(t_bench *bench);
 
 // Sorting algorithms
 void    insertion(t_node **a, t_node **b, t_bench **bench);

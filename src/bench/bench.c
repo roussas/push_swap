@@ -2,13 +2,14 @@
 #include <unistd.h>
 #include <stdio.h>
 
-t_bench *bench_init(void)
+t_bench *bench_init(t_node *a)
 {
     t_bench *bench;
 
     bench = malloc(sizeof(t_bench));
     if (bench == NULL)
         return (NULL);
+    bench->disorder = compute_disorder(a);
     bench->cntpa = 0;
     bench->cntpb = 0;
     bench->cntsa = 0;
@@ -23,39 +24,22 @@ t_bench *bench_init(void)
     return (bench);
 }
 
-static char *strdisorder(t_node *a)
-{
-    float   disorder;
-    int     d;
-    char    *str;
-    int     i;
-
-    disorder = compute_disorder(a);
-    str = malloc(6 * sizeof(char));
-    d = (int)(disorder * 100);
-    i = 0;
-    while(i < 5)
-    {
-        if (i != 2)
-        {
-            str[i] = (d % 10) + '0';
-            d = d / 10;
-        }
-        else
-            str[i] = '.';
-        i++;
-    }
-    str[i] = '\0';
-    return (str);    
-}
-
-void write_bench(t_bench *bench, t_flag *flag, t_node *a)
+void write_bench(t_bench *bench, t_flag *flag)
 {
     int total;
 
-    write(2, strdisorder(a), 6);
+    write(2, "[bench] disorder:  ", 20);
+    write(2, strdisorder(bench->disorder), 6);
+    write(2, "\n", 1);
     total = bench->cntpa + bench->cntpb;
     if (flag->strategy == 0 || flag->strategy == 8)
         write(2, "[bench] strategy:  Adaptive / O(n*sqrt(n))", 44);
-    printf("pa: %d\n", bench->cntpa);
+    else if (flag->strategy == 1)
+        write(2, "[bench] strategy:  Simple / O(n^2)", 35);
+    else if (flag->strategy == 2)
+        write(2, "[bench] strategy:  Medium / O(n*sqrt(n))", 41);
+    else if (flag->strategy == 4)
+        write(2, "[bench] strategy:  Complex / O(n*log(n))", 41);
+    write(2, "\n", 1);
+    write_counts(bench);
 }

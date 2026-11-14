@@ -3,9 +3,11 @@ NAME	    = push_swap
 SRC_DIR		= src
 OBJ_DIR		= obj
 
-BENCH_SRCS	= src/bench/bench.c
-PARSE_SRCS	= src/parse/disorder.c \
-			  src/parse/error_handle.c \
+BENCH_SRCS	= src/bench/bench.c \
+			  src/bench/disorder.c \
+			  src/bench/ft_uitoa.c \
+			  src/bench/write_counts.c
+PARSE_SRCS	= src/parse/error_handle.c \
 			  src/parse/ft_atol.c \
 			  src/parse/ft_split.c \
 			  src/parse/ft_strncmp.c \

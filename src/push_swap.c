@@ -37,9 +37,9 @@ int main(int argc, char **argv)
         return (0);
     }
     // print_stack(a);
-    bench = bench_init();
+    bench = bench_init(a);
     sort(a, b, &f, &bench);
-    write_bench(bench, f, a);
+    write_bench(bench, f);
     // print_stack(a);
     return (1);
 }
