@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                       :::      ::::::::    */
+/*   push_swap.h                                       :+:      :+:    :+:    */
+/*                                                   +:+ +:+         +:+      */
+/*   By: username <username@student.42tokyo.jp>    #+#  +:+       +#+         */
+/*                                               +#+#+#+#+#+   +#+            */
+/*   Created: 2026/11/14 12:23:42 by username         #+#    #+#              */
+/*   Updated: 2026/11/14 13:10:13 by username        ###   ########.fr        */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
@@ -49,5 +61,16 @@ void	radix_sort(t_node **a, t_node **b);
 int		is_int(char *s);
 void	rangebased_sort(t_node **a, t_node **b);
 void	adaptive(t_node **a, t_node **b);
+int		findmax_n(t_node *stack, int n);
+int		sqrt_approx(int nb);
+int		count_numbers(char **l);
+t_node	*str_sel(char *s, t_node **a, t_node **b);
+int		ft_strcmp(char *s);
+int		comp(char *s1, char *s2);
+int		findmax_n(t_node *stack, int n);
+int		pushrange(t_node **a, t_node **b, int rtop);
+void	rangebased_insertion(t_node **a, t_node **b, int n);
+void	sort_chunk(t_node **a, t_node **b, int n, int len);
+void	rotate_to(t_node **b, int pos, int reverse);
 
 #endif

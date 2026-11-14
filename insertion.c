@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                       :::      ::::::::    */
+/*   insertion.c                                       :+:      :+:    :+:    */
+/*                                                   +:+ +:+         +:+      */
+/*   By: username <username@student.42tokyo.jp>    #+#  +:+       +#+         */
+/*                                               +#+#+#+#+#+   +#+            */
+/*   Created: 2026/11/14 12:23:15 by username         #+#    #+#              */
+/*   Updated: 2026/11/14 13:01:00 by username        ###   ########.fr        */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static void	sort_three(t_node **a)
@@ -17,62 +29,97 @@ static void	sort_three(t_node **a)
 		sa(a);
 }
 
-static int	find_insert_pos(t_node *b, int value)
+int	three_rule(t_node **a, int len)
 {
-	int	i;
-
-	i = 0;
-	while (b)
-	{
-		if (value > b->value)
-			break ;
-		b = b->next;
-		i++;
-	}
-	return (i);
-}
-
-void	insertion(t_node **a, t_node **b)
-{
-	int	len;
-	int	pos;
-	int	b_len;
-
-	len = stack_length(*a);
 	if (len <= 1)
-		return ;
+		return (0);
 	if (len == 2)
 	{
 		if ((*a)->value > (*a)->next->value)
 			sa(a);
-		return ;
+		return (0);
 	}
 	if (len == 3)
 	{
 		sort_three(a);
-		return ;
+		return (0);
 	}
+	return (1);
+}
+
+static int	get_max_pos(t_node *b)
+{
+	int	max;
+	int	max_pos;
+	int	i;
+
+	max = b->value;
+	max_pos = 0;
+	i = 0;
+	while (b)
+	{
+		if (b->value > max)
+		{
+			max = b->value;
+			max_pos = i;
+		}
+		b = b->next;
+		i++;
+	}
+	return (max_pos);
+}
+
+static int	find_insert_pos(t_node *b, int val)
+{
+	t_node	*curr;
+	t_node	*next;
+	int		i;
+
+	curr = b;
+	i = 0;
+	while (curr)
+	{
+		next = curr->next;
+		if (!next)
+			next = b;
+		if (curr->value > val && val > next->value)
+			return (i + 1);
+		curr = curr->next;
+		i++;
+	}
+	return (get_max_pos(b));
+}
+
+static void	stack_turn(int pos, int b_len, t_node **b)
+{
+	if (pos <= b_len / 2)
+	{
+		while (pos-- > 0)
+			rb(b);
+	}
+	else
+	{
+		pos = b_len - pos;
+		while (pos-- > 0)
+			rrb(b);
+	}
+}
+
+void	insertion(t_node **a, t_node **b)
+{
+	int	pos;
+
+	if (!three_rule(a, stack_length(*a)))
+		return ;
 	pb(a, b);
 	pb(a, b);
-	if ((*b)->value < (*b)->next->value)
-		sb(b);
 	while (*a)
 	{
+		pos = find_insert_pos(*b, (*a)->value);
+		stack_turn(pos, stack_length(*b), b);
 		pb(a, b);
-		pos = find_insert_pos(*b, (*b)->value);
-		b_len = stack_length(*b);
-		if (pos <= b_len / 2)
-		{
-			while (pos-- > 0)
-				rb(b);
-		}
-		else
-		{
-			pos = b_len - pos;
-			while (pos-- > 0)
-				rrb(b);
-		}
 	}
+	stack_turn(get_max_pos(*b), stack_length(*b), b);
 	while (*b)
 		pa(a, b);
 }

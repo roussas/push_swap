@@ -1,140 +1,112 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                       :::      ::::::::    */
+/*   medium.c                                          :+:      :+:    :+:    */
+/*                                                   +:+ +:+         +:+      */
+/*   By: username <username@student.42tokyo.jp>    #+#  +:+       +#+         */
+/*                                               +#+#+#+#+#+   +#+            */
+/*   Created: 2026/11/14 12:23:20 by username         #+#    #+#              */
+/*   Updated: 2026/11/14 13:09:29 by username        ###   ########.fr        */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-static int findmax_n(t_node *stack, int n)
+void	rotate_to(t_node **b, int pos, int reverse)
 {
-    int max_index;
-    int current_index;
-    t_node *max_node;
-    t_node *current;
+	int	j;
 
-    if (!stack || n <= 0)
-        return (-1);
-    max_index = 0;
-    current_index = 0;
-    max_node = stack;
-    current = stack;
-    while (current && current_index < n)
-    {
-        if (current->value > max_node->value)
-        {
-            max_node = current;
-            max_index = current_index;
-        }
-        current = current->next;
-        current_index++;
-    }
-    return (max_index);
+	j = 0;
+	while (j < pos)
+	{
+		if (reverse)
+			rrb(b);
+		else
+			rb(b);
+		j++;
+	}
 }
 
-static void rotate_to(t_node **b, int pos, int reverse)
+void	sort_chunk(t_node **a, t_node **b, int n, int len)
 {
-    int j;
-
-    j = 0;
-    while (j < pos)
-    {
-        if (reverse)
-            rrb(b);
-        else
-            rb(b);
-        j++;
-    }
-}
-
-static void sort_chunk(t_node **a, t_node **b, int n, int len)
-{
-    int maxpos;
-    int i;
-
-    i = 0;
-    while (i < n)
-    {
-        maxpos = findmax_n(*b, n - i);
-        if (maxpos < 0)
-            return ;
-        rotate_to(b, maxpos, 0);
-        pa(a, b);
-        if (n < len)
-            rotate_to(b, maxpos, 1);
-        i++;
-    }
-}
-
-void rangebased_insertion(t_node **a, t_node **b, int n)
-{
-    int len;
-    int j;
-
-    if (!a || !b || !(*b) || n <= 0)
-        return ;
-    len = stack_length(*b);
-    sort_chunk(a, b, n, len);
-    j = 0;
-    while (j < n)
-    {
-        pb(a, b);
-        j++;
-    }
-}
-
-static int	sqrt_approx(int nb)
-{
+	int	maxpos;
 	int	i;
 
-	if (nb < 0)
-		return (-1);
-	if (nb == 0 || nb == 1)
-		return (nb);
-	i = 1;
-	while (i <= 46340 && i * i <= nb)
+	i = 0;
+	while (i < n)
+	{
+		maxpos = findmax_n(*b, n - i);
+		if (maxpos < 0)
+			return ;
+		rotate_to(b, maxpos, 0);
+		pa(a, b);
+		if (n < len)
+			rotate_to(b, maxpos, 1);
 		i++;
-	return (i - 1);
+	}
 }
 
-static int pushrange(t_node **a, t_node **b, int rtop)
+void	rangebased_insertion(t_node **a, t_node **b, int n)
 {
-    int len;
-    int count_pushed;
+	int	len;
+	int	j;
 
-    len = stack_length(*a);
-    count_pushed = 0;
-    while (len > 0)
-    {
-        if ((*a)->rank <= rtop)
-        {
-            pb(a, b);
-            count_pushed++;
-        }
-        else
-            ra(a);
-        len--;
-    }
-    return (count_pushed);
+	if (!a || !b || !(*b) || n <= 0)
+		return ;
+	len = stack_length(*b);
+	sort_chunk(a, b, n, len);
+	j = 0;
+	while (j < n)
+	{
+		pb(a, b);
+		j++;
+	}
 }
 
-void rangebased_sort(t_node **a, t_node **b)
+int	pushrange(t_node **a, t_node **b, int rtop)
 {
-    int length;
-    int countrange;
-    int pushcount;
-    int dist;
-    int i;
+	int	len;
+	int	count_pushed;
 
-    if (!a || !(*a))
-        return ;
-    rank_list(a);
-    length = stack_length(*a);
-    dist = sqrt_approx(length);
-    if (dist <= 0)
-        return ;
-    countrange = (length + dist - 1) / dist;
-    i = 0;
-    while (i < countrange)
-    {
-        pushcount = pushrange(a, b, dist * (i + 1) - 1);
-        rangebased_insertion(a, b, pushcount);
-        i++;
-    }
-    while (*b)
-        pa(a, b);
+	len = stack_length(*a);
+	count_pushed = 0;
+	while (len > 0)
+	{
+		if ((*a)->rank <= rtop)
+		{
+			pb(a, b);
+			count_pushed++;
+		}
+		else
+			ra(a);
+		len--;
+	}
+	return (count_pushed);
+}
+
+void	rangebased_sort(t_node **a, t_node **b)
+{
+	int	length;
+	int	countrange;
+	int	pushcount;
+	int	dist;
+	int	i;
+
+	if (!a || !(*a))
+		return ;
+	rank_list(a);
+	length = stack_length(*a);
+	dist = sqrt_approx(length);
+	if (dist <= 0)
+		return ;
+	countrange = (length + dist - 1) / dist;
+	i = 0;
+	while (i < countrange)
+	{
+		pushcount = pushrange(a, b, dist * (i + 1) - 1);
+		rangebased_insertion(a, b, pushcount);
+		i++;
+	}
+	while (*b)
+		pa(a, b);
 }

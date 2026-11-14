@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                       :::      ::::::::    */
+/*   atoi_utils.c                                      :+:      :+:    :+:    */
+/*                                                   +:+ +:+         +:+      */
+/*   By: username <username@student.42tokyo.jp>    #+#  +:+       +#+         */
+/*                                               +#+#+#+#+#+   +#+            */
+/*   Created: 2026/11/14 12:22:52 by username         #+#    #+#              */
+/*   Updated: 2026/11/14 12:22:52 by username        ###   ########.fr        */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 long	ft_atol(const char *nptr)
@@ -29,9 +41,9 @@ long	ft_atol(const char *nptr)
 
 int	ft_atoi(const char *nptr)
 {
-	int		i;
-	int		k;
-	int		sign;
+	int	i;
+	int	k;
+	int	sign;
 
 	i = 0;
 	k = 0;
