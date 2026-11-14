@@ -15,34 +15,39 @@
 //RRR IS IN THE OPS_LOGIC BECAUSE I HAD NO SPACE HERE  -NORMINETE-
 #include "push_swap.h"
 
-void	sa(t_node **a)
+void	sa(t_node **a, t_bench **bench)
 {
 	swap(a);
 	write(1, "sa\n", 3);
+	(*bench)->cntsa++;
 }
 
-void	sb(t_node **b)
+void	sb(t_node **b, t_bench **bench)
 {
 	swap(b);
 	write(1, "sb\n", 3);
+	(*bench)->cntsa++;
 }
 
-void	ss(t_node **a, t_node **b)
+void	ss(t_node **a, t_node **b, t_bench **bench)
 {
 	swap(a);
 	swap(b);
 	write(1, "ss\n", 3);
+	(*bench)->cntss++;
 }
 //IF NOT MOVED NOT PRINTED PA PB : I NEED TO FIX THIS !
 
-void	pa(t_node **a, t_node **b)
+void	pa(t_node **a, t_node **b, t_bench **bench)
 {
 	push_to(b, a);
 	write(1, "pa\n", 3);
+	(*bench)->cntpa++;
 }
 
-void	pb(t_node **a, t_node **b)
+void	pb(t_node **a, t_node **b, t_bench **bench)
 {
 	push_to(a, b);
 	write(1, "pb\n", 3);
+	(*bench)->cntpb++;
 }

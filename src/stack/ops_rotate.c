@@ -15,33 +15,38 @@
 //I WROTE IT LIKE THIS TO AVOID USING TWO OF THE SAME FUNCTION
 // FOR EXAMPLE SA AND SB ARE DOING THE SAME THING SO I JUST CALL ONE FUNCTION AND PRINT WHAT I DID
 //RRR IS IN THE OPS_LOGIC BECAUSE I HAD NO SPACE HERE  -NORMINETE-
-void	ra(t_node **a)
+void	ra(t_node **a, t_bench **bench)
 {
 	rotate(a);
 	write(1, "ra\n", 3);
+	(*bench)->cntra++;
 }
 
-void	rb(t_node **b)
+void	rb(t_node **b, t_bench **bench)
 {
 	rotate(b);
 	write(1, "rb\n", 3);
+	(*bench)->cntrb++;
 }
 
-void	rr(t_node **a, t_node **b)
+void	rr(t_node **a, t_node **b, t_bench **bench)
 {
 	rotate(a);
 	rotate(b);
 	write(1, "rr\n", 3);
+	(*bench)->cntrr++;
 }
 
-void	rra(t_node **a)
+void	rra(t_node **a, t_bench **bench)
 {
 	reverse_rotate(a);
 	write(1, "rra\n", 4);
+	(*bench)->cntrra++;
 }
 
-void	rrb(t_node **b)
+void	rrb(t_node **b, t_bench **bench)
 {
 	reverse_rotate(b);
 	write(1, "rrb\n", 4);
+	(*bench)->cntrrb++;
 }

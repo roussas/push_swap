@@ -6,7 +6,7 @@
 /*   By: kpagkalo <kpagkalo@student.42vienna.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/27 13:34:25 by kpagkalo          #+#    #+#             */
-/*   Updated: 2026/11/13 00:09:18 by yaozhou          ###   ########.fr       */
+/*   Updated: 2026/11/14 15:16:07 by yaozhou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,22 @@ typedef struct s_flag
 	int		strategy;
 	int		bench;
 }	t_flag;
+
+typedef struct s_bench
+{
+	int		cntpa;
+	int		cntpb;
+	int		cntsa;
+	int		cntsb;
+	int		cntss;
+	int		cntra;
+	int		cntrb;
+	int		cntrr;
+	int		cntrra;
+	int		cntrrb;
+	int		cntrrr;
+}	t_bench;
+
 
 typedef struct t_node
 {
@@ -43,17 +59,17 @@ void	swap(t_node **stack);
 void	rotate(t_node **stack);
 void	reverse_rotate(t_node **stack);
 //DEBUG ONLY: remove before submit
-void	pa(t_node **a, t_node **b);
-void	pb(t_node **a, t_node **b);
-void	sa(t_node **a);
-void	sb(t_node **b);
-void	ss(t_node **a, t_node **b);
-void	ra(t_node **a);
-void	rb(t_node **b);
-void	rra(t_node **a);
-void	rrb(t_node **b);
-void	rrr(t_node **a, t_node **b);
-void	rr(t_node **a, t_node **b);
+void	pa(t_node **a, t_node **b, t_bench **bench);
+void	pb(t_node **a, t_node **b, t_bench **bench);
+void	sa(t_node **a, t_bench **bench);
+void	sb(t_node **b, t_bench **bench);
+void	ss(t_node **a, t_node **b, t_bench **bench);
+void	ra(t_node **a, t_bench **bench);
+void	rb(t_node **b, t_bench **bench);
+void	rra(t_node **a, t_bench **bench);
+void	rrb(t_node **b, t_bench **bench);
+void	rrr(t_node **a, t_node **b, t_bench **bench);
+void	rr(t_node **a, t_node **b, t_bench **bench);
 
 int		is_sorted(t_node **stack);
 int		max_bits(t_node **a);
@@ -64,13 +80,13 @@ int		ft_atol(const char *nptr);
 char	**ft_split(char const *s, char c);
 int	ft_strncmp(const char *s1, const char *s2, size_t n);
 
-t_flag		*flags_init();
-int parseargs(int count, char **args, t_node **a, t_flag *f);
+t_flag	*flags_init();
+int		parseargs(int count, char **args, t_node **a, t_flag *f);
 int		is_valid_int(char *s);
-t_node		*str_to_node(char *s);
-void		add_back(t_node **a, t_node *new);
-void		free_list (char **l);
-int no_doubles(t_node *a);
+t_node	*str_to_node(char *s);
+void	add_back(t_node **a, t_node *new);
+void	free_list (char **l);
+int		no_doubles(t_node *a);
 
 
 // Ranking functions
@@ -79,12 +95,17 @@ void	rank_list(t_node **a);
 
 double  compute_disorder(t_node *stack);
 // Sorting fork
-void sort(t_node *a, t_node *b, t_flag *f);
-void adaptive_sort(t_node *a, t_node *b);
+void	sort(t_node *a, t_node *b, t_flag **f, t_bench **bench);
+void	adaptive_sort(t_node *a, t_node *b, t_bench **bench);
+
+// Benchmarking
+t_bench	*bench_init(void);
+void	write_bench(t_bench *bench, t_flag *flag, t_node *a);
+
 // Sorting algorithms
-void    insertion(t_node **a, t_node **b);
+void    insertion(t_node **a, t_node **b, t_bench **bench);
 void    chunkbased(t_node **a, t_node **b);
-void	rangebased_sort(t_node **a, t_node **b);
-void	radix_sort(t_node **a, t_node **b);
+void	rangebased_sort(t_node **a, t_node **b, t_bench **bench);
+void	radix_sort(t_node **a, t_node **b, t_bench **bench);
 
 #endif

@@ -24,7 +24,7 @@ static int findmax_n(t_node *stack, int n)
     return (max_index);
 }
 
-void    rangebased_insertion(t_node **tobesorted, t_node **otherone, int n)
+static void    rangebased_insertion(t_node **tobesorted, t_node **otherone, int n, t_bench **bench)
 {
     int len;
     // int minpos;
@@ -44,16 +44,16 @@ void    rangebased_insertion(t_node **tobesorted, t_node **otherone, int n)
         j = 0;
         while (j < maxpos)
         {
-            rb(tobesorted);
+            rb(tobesorted, bench);
             j++;
         }
-        pb(tobesorted, otherone);
+        pb(tobesorted, otherone, bench);
         if (n < len)
         {
             j = 0;
             while (j < maxpos)
             {
-                rrb(tobesorted);
+                rrb(tobesorted, bench);
                 j++;
             }
         }
@@ -63,7 +63,7 @@ void    rangebased_insertion(t_node **tobesorted, t_node **otherone, int n)
     while (n > 0)
     {
         // printf("step: %d\n", n);
-        pa(tobesorted, otherone);
+        pa(tobesorted, otherone, bench);
         n--;
     }
 }
@@ -82,7 +82,7 @@ static int	sqrt_approx(int nb)
 	return (i - 1);
 }
 
-static int pushrange(t_node **a, t_node **b, int rtop)
+static int pushrange(t_node **a, t_node **b, int rtop, t_bench **bench)
 {
     int len;
     int count_pushed;
@@ -93,17 +93,17 @@ static int pushrange(t_node **a, t_node **b, int rtop)
     {
         if ((*a)->rank <= rtop)
         {
-            pb(a, b);
+            pb(a, b, bench);
             count_pushed++;
         }
         else
-            ra(a);
+            ra(a, bench);
         len--;
     }
     return (count_pushed);
 }
 
-void rangebased_sort(t_node **a, t_node **b)
+void rangebased_sort(t_node **a, t_node **b, t_bench **bench)
 {
     int length;
     int countrange;
@@ -120,10 +120,10 @@ void rangebased_sort(t_node **a, t_node **b)
     i = 0;
     while (i < countrange)
     {
-        pushcount = pushrange(a, b, dist * (i + 1));
-        rangebased_insertion(b, a, pushcount);
+        pushcount = pushrange(a, b, dist * (i + 1), bench);
+        rangebased_insertion(b, a, pushcount, bench);
         i++;
     }
     while (*b)
-        pa(a, b);
+        pa(a, b, bench);
 }

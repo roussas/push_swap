@@ -31,7 +31,7 @@ static int findmin(t_node *stack)
     return (min_index);
 }
 
-static void rotatetotop(t_node **stack, int count)
+static void rotatetotop(t_node **stack, int count, t_bench **bench)
 {
     int len;
 
@@ -42,7 +42,7 @@ static void rotatetotop(t_node **stack, int count)
     {
         while (count > 0)
         {
-            ra(stack);
+            ra(stack, bench);
             count--;
         }
     }
@@ -50,13 +50,13 @@ static void rotatetotop(t_node **stack, int count)
     {
         while (count < len)
         {
-            rra(stack);
+            rra(stack, bench);
             count++;
         }
     }
 }
 
-void    insertion(t_node **a, t_node **b)
+void    insertion(t_node **a, t_node **b, t_bench **bench)
 {
     int count;
 
@@ -65,9 +65,9 @@ void    insertion(t_node **a, t_node **b)
     while ((*a)->next)
     {
         count = findmin(*a);
-        rotatetotop(a, count);
-        pb(a, b);
+        rotatetotop(a, count, bench);
+        pb(a, b, bench);
     }
     while (*b)
-        pa(a, b);
+        pa(a, b, bench);
 }

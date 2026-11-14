@@ -51,7 +51,7 @@ int max_bits(t_node **a)
     return (bits);
 }
 
-void radix_sort(t_node **a, t_node **b)
+void radix_sort(t_node **a, t_node **b, t_bench **bench)
 {
     int bits;
     int i;
@@ -66,13 +66,13 @@ void radix_sort(t_node **a, t_node **b)
         while(size > 0)
         {
             if (((*a)->rank & (1 << i)) == 0)
-                pb(a,b);
+                pb(a,b, bench);
             else
-                ra(a);
+                ra(a, bench);
             size--;
         }
         while(*b != NULL)
-            pa(a,b);
+            pa(a,b, bench);
         i++;
     }
 }

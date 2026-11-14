@@ -3,6 +3,7 @@ NAME	    = push_swap
 SRC_DIR		= src
 OBJ_DIR		= obj
 
+BENCH_SRCS	= src/bench/bench.c
 PARSE_SRCS	= src/parse/disorder.c \
 			  src/parse/error_handle.c \
 			  src/parse/ft_atol.c \
@@ -12,13 +13,15 @@ PARSE_SRCS	= src/parse/disorder.c \
 			  src/parse/ranker.c
 SORT_SRCS	= src/sort/complex.c \
 			  src/sort/insertion.c \
-			  src/sort/medium.c
+			  src/sort/medium.c \
+			  src/sort/sort.c
 STACK_SRCS  = src/stack/ops_logic.c \
 			  src/stack/ops_rotate.c \
 			  src/stack/ops_swap_push.c \
 			  src/stack/print_stack.c \
 			  src/stack/stack_utils.c
 SRCS		= src/push_swap.c \
+			  $(BENCH_SRCS) \
 			  $(PARSE_SRCS) \
 			  $(SORT_SRCS) \
 			  $(STACK_SRCS)
