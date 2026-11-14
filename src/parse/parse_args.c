@@ -58,6 +58,11 @@ void	adaptive_sort(t_node **a, t_node **b)
 {
 	double	disorder;
 
+	if (stack_length(*a) <= SMALL_INPUT)
+	{
+		insertion(a, b);
+		return ;
+	}
 	disorder = compute_disorder(*a);
 	if (disorder < 0.2)
 		insertion(a, b);

@@ -38,6 +38,8 @@ int	parseflags(const char *arg, t_flag *f)
 		strat = 4;
 	else if (!ft_strncmp(arg, "--adaptive", 11))
 		strat = 8;
+	else
+		return (0);
 	strat = f->strategy | strat;
 	if (!(strat == 0 || strat == 1 || strat == 2 || strat == 4 || strat == 8))
 		return (0);

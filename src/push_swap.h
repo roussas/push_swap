@@ -17,6 +17,8 @@
 # include <unistd.h>
 #include <stddef.h>
 
+# define SMALL_INPUT 5
+
 typedef struct t_node
 {
 	int				value;
@@ -93,8 +95,8 @@ int		comp(char *s1, char *s2);
 int		findmax_n(t_node *stack, int n);
 int		pushrange(t_node **a, t_node **b, int rtop);
 void	rangebased_insertion(t_node **a, t_node **b, int n);
-void	sort_chunk(t_node **a, t_node **b, int n, int len);
-void	rotate_to(t_node **b, int pos, int reverse);
+void    sort_chunk(t_node **a, t_node **b, int n);
+void    rotate_to(t_node **b, int pos);
 void	sort_three(t_node **a);
 int is_valid_data(char *s);
 int parsedata(const char *arg, t_node **a);
