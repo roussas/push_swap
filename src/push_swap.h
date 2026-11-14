@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+#include <stddef.h>
 
 typedef struct t_node
 {
@@ -23,6 +24,11 @@ typedef struct t_node
 	struct t_node	*next;
 }	t_node;
 
+typedef struct s_flag
+{
+	int		strategy;
+	int		bench;
+}	t_flag;
 // typedef struct t_bench
 // {
 // 	double	disorder_n;
@@ -91,5 +97,14 @@ void	rangebased_insertion(t_node **a, t_node **b, int n);
 void	sort_chunk(t_node **a, t_node **b, int n, int len);
 void	rotate_to(t_node **b, int pos, int reverse);
 void	sort_three(t_node **a);
+int is_valid_data(char *s);
+int parsedata(const char *arg, t_node **a);
+int parseflags(const char *arg, t_flag *f);
+t_flag *flags_init();
+int checkarg(const char *arg);
+int parseargs(int count, char **args, t_node **a, t_flag *f);
+void adaptive_sort(t_node *a, t_node *b);
+void sort(t_node *a, t_node *b, t_flag *f);
+int	ft_strncmp(const char *s1, const char *s2, size_t n);
 
 #endif

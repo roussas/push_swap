@@ -1,21 +1,44 @@
-CC      = cc
-CFLAGS  = -Wall -Wextra -Werror
-NAME    = push_swap
+NAME	    = push_swap
 
-SRCS    = complex.c disorder.c error_handle.c ft_split.c insertion.c medium.c ops_logic.c ops_rotate.c \
-          ops_swap_push.c push_swap.c stack_utils.c atoi_utils.c adaptive.c extra_utils.c str_utils.c
-OBJS    = $(SRCS:.c=.o)
+SRC_DIR		= src
+OBJ_DIR		= obj
+
+PARSE_SRCS	= src/parse/disorder.c \
+			  src/parse/error_handle.c \
+			  src/parse/ft_split.c \
+			  src/parse/atoi_utils.c \
+			  src/parse/parse_args.c \
+			  src/parse/parse_arg_extra
+SORT_SRCS	= src/sort/complex.c \
+			  src/sort/insertion.c \
+			  src/sort/medium.c		\
+			  src/sort/adaptive.c
+STACK_SRCS  = src/stack/ops_logic.c \
+			  src/stack/ops_rotate.c \
+			  src/stack/ops_swap_push.c \
+			  src/stack/stack_utils.c \
+			  src/stack/extra_utils.c \
+			  src/stack/str_utils.c
+SRCS		= src/push_swap.c \
+			  $(PARSE_SRCS) \
+			  $(SORT_SRCS) \
+			  $(STACK_SRCS)
+OBJS    	= $(SRCS:src/%.c=$(OBJ_DIR)/%.o)
+
+CC      = cc
+CFLAGS  = -Wall -Wextra -Werror -Isrc
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
-%.o: %.c push_swap.h
+$(OBJ_DIR)/%.o: src/%.c
+	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
+	rm -rf $(OBJ_DIR)
 
 fclean: clean
 	rm -f $(NAME)
