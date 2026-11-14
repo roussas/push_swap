@@ -6,12 +6,11 @@
 /*   By: username <username@student.42tokyo.jp>    #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/14 12:22:27 by username         #+#    #+#              */
-/*   Updated: 2026/11/14 12:54:12 by username        ###   ########.fr        */
+/*   Updated: 2026/11/14 15:51:59 by username        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
 
 static int	print_error(t_node **a)
 {
@@ -30,29 +29,30 @@ static int	print_error(t_node **a)
 // 	}
 // }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-    t_node *a;
-    t_node *b;
-    t_flag *f;
+	t_node	*a;
+	t_node	*b;
+	t_flag	*f;
 
-    if (argc < 2)
-        return (0);
-    a = NULL;
-    b = NULL;
-    f = flags_init();
-    if (!parseargs(argc, argv, &a, f))
-    {
-		print_error(&a);
-        return (0);
-    }
-    if (!no_doubles(a))
-    {
+	if (argc < 2)
+		return (0);
+	a = NULL;
+	b = NULL;
+	f = flags_init();
+	if (!parseargs(argc, argv, &a, f))
+	{
 		print_error(&a);
 		return (0);
-    }
-    sort(a, b, f);
+	}
+	if (!no_doubles(a))
+	{
+		print_error(&a);
+		return (0);
+	}
+	sort(a, b, f);
 	free_stack(&a);
 	free_stack(&b);
-    return (0);
+	free(f);
+	return (0);
 }

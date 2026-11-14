@@ -6,7 +6,7 @@
 /*   By: username <username@student.42tokyo.jp>    #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/14 12:23:15 by username         #+#    #+#              */
-/*   Updated: 2026/11/14 13:17:19 by username        ###   ########.fr        */
+/*   Updated: 2026/11/14 15:56:16 by username        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ void	insertion(t_node **a, t_node **b)
 	int	pos;
 
 	if (!three_rule(a, stack_length(*a)))
+		return ;
+	if (compute_disorder(*a) == 0.0)
 		return ;
 	pb(a, b);
 	pb(a, b);

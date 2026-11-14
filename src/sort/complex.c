@@ -6,7 +6,7 @@
 /*   By: username <username@student.42tokyo.jp>    #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/14 12:22:57 by username         #+#    #+#              */
-/*   Updated: 2026/11/14 13:20:37 by username        ###   ########.fr        */
+/*   Updated: 2026/11/14 15:55:57 by username        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ void	radix_sort(t_node **a, t_node **b)
 	int	i;
 	int	size;
 
+	if (compute_disorder(*a) == 0.0)
+		return ;
 	rank_list(a);
 	i = 0;
 	bits = max_bits(a);

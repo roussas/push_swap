@@ -6,7 +6,7 @@
 /*   By: username <username@student.42tokyo.jp>    #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/14 12:23:20 by username         #+#    #+#              */
-/*   Updated: 2026/11/14 13:09:29 by username        ###   ########.fr        */
+/*   Updated: 2026/11/14 15:56:27 by username        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ void	rangebased_sort(t_node **a, t_node **b)
 	int	i;
 
 	if (!a || !(*a))
+		return ;
+	if (compute_disorder(*a) == 0.0)
 		return ;
 	rank_list(a);
 	length = stack_length(*a);
