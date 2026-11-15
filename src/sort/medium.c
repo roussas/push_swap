@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void    rotate_to(t_node **b, int pos)
+void    rotate_to(t_node **b, int pos, t_bench **bench)
 {
     int len;
     int j;
@@ -23,7 +23,7 @@ void    rotate_to(t_node **b, int pos)
     {
         while (j < pos)
         {
-            rb(b);
+            rb(b, bench);
             j++;
         }
     }
@@ -31,13 +31,13 @@ void    rotate_to(t_node **b, int pos)
     {
         while (j < len - pos)
         {
-            rrb(b);
+            rrb(b, bench);
             j++;
         }
     }
 }
 
-void    sort_chunk(t_node **a, t_node **b, int n)
+void    sort_chunk(t_node **a, t_node **b, int n, t_bench **bench)
 {
     int maxpos;
     int i;
@@ -48,20 +48,20 @@ void    sort_chunk(t_node **a, t_node **b, int n)
         maxpos = findmax_n(*b, n - i);
         if (maxpos < 0)
             return ;
-        rotate_to(b, maxpos);
-        pa(a, b);
+        rotate_to(b, maxpos, bench);
+        pa(a, b, bench);
         i++;
     }
 }
 
-void    rangebased_insertion(t_node **a, t_node **b, int n)
+void    rangebased_insertion(t_node **a, t_node **b, int n, t_bench **bench)
 {
     if (!a || !b || !(*b) || n <= 0)
         return ;
-    sort_chunk(a, b, n);
+    sort_chunk(a, b, n, bench);
 }
 
-int	pushrange(t_node **a, t_node **b, int rtop)
+int	pushrange(t_node **a, t_node **b, int rtop, t_bench **bench)
 {
 	int	len;
 	int	count_pushed;
@@ -72,17 +72,17 @@ int	pushrange(t_node **a, t_node **b, int rtop)
 	{
 		if ((*a)->rank <= rtop)
 		{
-			pb(a, b);
+			pb(a, b, bench);
 			count_pushed++;
 		}
 		else
-			ra(a);
+			ra(a, bench);
 		len--;
 	}
 	return (count_pushed);
 }
 
-void    rangebased_sort(t_node **a, t_node **b)
+void    rangebased_sort(t_node **a, t_node **b, t_bench **bench)
 {
     int length;
     int countrange;
@@ -90,7 +90,8 @@ void    rangebased_sort(t_node **a, t_node **b)
     int dist;
     int i;
 
-<<<<<<< HEAD
+    if (!a || !*a || !b || *b)
+        return ;
     rank_list(a);
     length = stack_length(*a);
     countrange = sqrt_approx(length);
@@ -107,23 +108,3 @@ void    rangebased_sort(t_node **a, t_node **b)
     while (*b)
         pa(a, b, bench);
 }
-=======
-    if (!a || !*a || !b || *b)
-        return ;
-    if (compute_disorder(*a) == 0.0)
-        return ;
-    rank_list(a);
-    length = stack_length(*a);
-    dist = sqrt_approx(length);
-    if (dist <= 0)
-        return ;
-    countrange = (length + dist - 1) / dist;
-    i = 0;
-    while (i < countrange)
-    {
-        pushcount = pushrange(a, b, dist * (i + 1) - 1);
-        rangebased_insertion(a, b, pushcount);
-        i++;
-    }
-}
->>>>>>> cleaned-up-code

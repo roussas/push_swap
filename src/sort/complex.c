@@ -12,36 +12,6 @@
 
 #include "push_swap.h"
 
-int	rank_set(t_node *node, t_node **a)
-{
-	int		rank;
-	t_node	*tmp;
-
-	rank = 0;
-	tmp = *a;
-	while (tmp != NULL)
-	{
-		if (node->value > tmp->value)
-			rank++;
-		tmp = tmp->next;
-	}
-	return (rank);
-}
-
-void	rank_list(t_node **a)
-{
-	t_node	*tmp;
-
-	if (a == NULL || *a == NULL)
-		return ;
-	tmp = *a;
-	while (tmp != NULL)
-	{
-		tmp->rank = rank_set(tmp, a);
-		tmp = tmp->next;
-	}
-}
-
 int	max_bits(t_node **a)
 {
 	t_node	*tmp;
@@ -67,7 +37,7 @@ int	max_bits(t_node **a)
 	return (max);
 }
 
-void	radix_sort(t_node **a, t_node **b)
+void	radix_sort(t_node **a, t_node **b, t_bench **bench)
 {
 	int	bits;
 	int	i;
@@ -84,12 +54,12 @@ void	radix_sort(t_node **a, t_node **b)
 		while (size-- > 0)
 		{
 			if (((*a)->rank & (1 << i)) == 0)
-				pb(a, b);
+				pb(a, b, bench);
 			else
-				ra(a);
+				ra(a, bench);
 		}
 		while (*b)
-			pa(a, b);
+			pa(a, b, bench);
 		i++;
 	}
 }

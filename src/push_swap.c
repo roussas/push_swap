@@ -35,6 +35,7 @@ int	main(int argc, char **argv)
 	t_node	*a;
 	t_node	*b;
 	t_flag	*f;
+	t_bench *bench;
 
 	if (argc < 2)
 		return (0);
@@ -48,9 +49,13 @@ int	main(int argc, char **argv)
 		print_error(&a,f);
 		return (0);
 	}
-	sort(&a, &b, f);
+	bench = bench_init(a);
+	sort(&a, &b, &f, &bench);
+	if (f->bench)
+		write_bench(bench, f);
 	free_stack(&a);
 	free_stack(&b);
 	free(f);
+	free(bench);
 	return (0);
 }

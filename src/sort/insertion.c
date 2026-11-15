@@ -12,19 +12,19 @@
 
 #include "push_swap.h"
 
-int	three_rule(t_node **a, int len)
+int	three_rule(t_node **a, int len, t_bench **bench)
 {
 	if (len <= 1)
 		return (0);
 	if (len == 2)
 	{
 		if ((*a)->value > (*a)->next->value)
-			sa(a);
+			sa(a, bench);
 		return (0);
 	}
 	if (len == 3)
 	{
-		sort_three(a);
+		sort_three(a, bench);
 		return (0);
 	}
 	return (1);
@@ -73,38 +73,38 @@ static int	find_insert_pos(t_node *b, int val)
 	return (get_max_pos(b));
 }
 
-static void	stack_turn(int pos, int b_len, t_node **b)
+static void	stack_turn(int pos, int b_len, t_node **b, t_bench **bench)
 {
 	if (pos <= b_len / 2)
 	{
 		while (pos-- > 0)
-			rb(b);
+			rb(b, bench);
 	}
 	else
 	{
 		pos = b_len - pos;
 		while (pos-- > 0)
-			rrb(b);
+			rrb(b, bench);
 	}
 }
 
-void	insertion(t_node **a, t_node **b)
+void	insertion(t_node **a, t_node **b, t_bench **bench)
 {
 	int	pos;
 
-	if (!three_rule(a, stack_length(*a)))
+	if (!three_rule(a, stack_length(*a), bench))
 		return ;
 	if (compute_disorder(*a) == 0.0)
 		return ;
-	pb(a, b);
-	pb(a, b);
+	pb(a, b, bench);
+	pb(a, b, bench);
 	while (*a)
 	{
 		pos = find_insert_pos(*b, (*a)->value);
-		stack_turn(pos, stack_length(*b), b);
-		pb(a, b);
+		stack_turn(pos, stack_length(*b), b, bench);
+		pb(a, b, bench);
 	}
-	stack_turn(get_max_pos(*b), stack_length(*b), b);
+	stack_turn(get_max_pos(*b), stack_length(*b), b, bench);
 	while (*b)
-		pa(a, b);
+		pa(a, b, bench);
 }

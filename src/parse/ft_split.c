@@ -108,8 +108,4 @@ char	**ft_split(char const *s, char c)
 	if (fill_split(split, s, c) == 0)
 		return (NULL);
 	return (split);
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> cleaned-up-code

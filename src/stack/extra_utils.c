@@ -104,7 +104,7 @@ int    findmax_n(t_node *stack, int n)
     return (max_index);
 }
 
-void	sort_three(t_node **a)
+void	sort_three(t_node **a, t_bench **bench)
 {
 	int	top;
 	int	mid;
@@ -114,9 +114,9 @@ void	sort_three(t_node **a)
 	mid = (*a)->next->value;
 	bot = (*a)->next->next->value;
 	if (top > mid && top > bot)
-		ra(a);
+		ra(a, bench);
 	else if (mid > top && mid > bot)
-		rra(a);
+		rra(a, bench);
 	if ((*a)->value > (*a)->next->value)
-		sa(a);
+		sa(a, bench);
 }

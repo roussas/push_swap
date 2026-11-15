@@ -49,14 +49,6 @@ typedef struct s_bench
 	unsigned int	cntrrr;
 }	t_bench;
 
-
-typedef struct t_node
-{
-	int			value;
-	int			rank;
-	struct t_node	*next;
-}	t_node;
-
 t_node	*new_t_node(int value);
 
 void	push_top(t_node **stack, t_node *new);
@@ -87,7 +79,6 @@ int		max_bits(t_node **a);
 
  
 // Parsing data
-int		ft_atol(const char *nptr);
 char	**ft_split(char const *s, char c);
 int	ft_strncmp(const char *s1, const char *s2, size_t n);
 
@@ -105,8 +96,8 @@ int		rank_set(t_node *node, t_node **a);
 void	rank_list(t_node **a);
 
 // Sorting fork
-void	sort(t_node *a, t_node *b, t_flag **f, t_bench **bench);
-void	adaptive_sort(t_node *a, t_node *b, t_bench **bench);
+void	sort(t_node **a, t_node **b, t_flag **f, t_bench **bench);
+void	adaptive_sort(t_node **a, t_node **b, t_bench **bench);
 
 // Benchmarking
 t_bench	*bench_init(t_node *a);
@@ -137,11 +128,8 @@ void	add_back(t_node **a, t_node *new);
 int		no_doubles(t_node *a);
 int		ft_atoi(const char *nptr);
 double	compute_disorder(t_node *stack);
-void	insertion(t_node **a, t_node **b);
 void	chunkbased(t_node **a, t_node **b);
-void	radix_sort(t_node **a, t_node **b);
 int		is_int(char *s);
-void	rangebased_sort(t_node **a, t_node **b);
 int		findmax_n(t_node *stack, int n);
 int		sqrt_approx(int nb);
 int		count_numbers(char **l);
@@ -149,19 +137,17 @@ t_node	*str_sel(char *s, t_node **a, t_node **b);
 int		ft_strcmp(char *s);
 int		comp(char *s1, char *s2);
 int		findmax_n(t_node *stack, int n);
-int		pushrange(t_node **a, t_node **b, int rtop);
-void	rangebased_insertion(t_node **a, t_node **b, int n);
-void    sort_chunk(t_node **a, t_node **b, int n);
-void    rotate_to(t_node **b, int pos);
-void	sort_three(t_node **a);
+int		pushrange(t_node **a, t_node **b, int rtop, t_bench **bench);
+void	rangebased_insertion(t_node **a, t_node **b, int n, t_bench **bench);
+void    sort_chunk(t_node **a, t_node **b, int n, t_bench **bench);
+void    rotate_to(t_node **b, int pos, t_bench **bench);
+void	sort_three(t_node **a, t_bench **bench);
 int is_valid_data(char *s);
 int parsedata(const char *arg, t_node **a);
 int parseflags(const char *arg, t_flag *f);
 t_flag *flags_init();
 int checkarg(const char *arg);
 int parseargs(int count, char **args, t_node **a, t_flag *f);
-void	adaptive_sort(t_node **a, t_node **b);
-void	sort(t_node **a, t_node **b, t_flag *f);
 int	ft_strncmp(const char *s1, const char *s2, size_t n);
 
 #endif

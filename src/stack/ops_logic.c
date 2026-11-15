@@ -72,7 +72,7 @@ void	reverse_rotate(t_node **stack)
 	tmp2 -> next = NULL;
 }
 
-void	rrr(t_node **a, t_node **b)
+void	rrr(t_node **a, t_node **b, t_bench **bench)
 {
 	int	i;
 
@@ -86,4 +86,5 @@ void	rrr(t_node **a, t_node **b)
 	reverse_rotate(a);
 	reverse_rotate(b);
 	write(1, "rrr\n", 4);
+	(*bench)->cntrrr++;
 }
