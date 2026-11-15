@@ -28,18 +28,18 @@ void write_bench(t_bench *bench, t_flag *flag)
 {
     int total;
 
-    write(2, "[bench] disorder:  ", 20);
-    write(2, strdisorder(bench->disorder), 6);
-    write(2, "\n", 1);
+    write(2, "[bench] disorder:  ", 19);
+    write(2, strdisorder(bench->disorder), 5);
+    write(2, "%\n", 2);
     total = bench->cntpa + bench->cntpb;
     if (flag->strategy == 0 || flag->strategy == 8)
-        write(2, "[bench] strategy:  Adaptive / O(n*sqrt(n))", 44);
+        write(2, "[bench] strategy:  Adaptive / O(n*sqrt(n))", 42);
     else if (flag->strategy == 1)
-        write(2, "[bench] strategy:  Simple / O(n^2)", 35);
+        write(2, "[bench] strategy:  Simple / O(n^2)", 34);
     else if (flag->strategy == 2)
-        write(2, "[bench] strategy:  Medium / O(n*sqrt(n))", 41);
+        write(2, "[bench] strategy:  Medium / O(n*sqrt(n))", 40);
     else if (flag->strategy == 4)
-        write(2, "[bench] strategy:  Complex / O(n*log(n))", 41);
+        write(2, "[bench] strategy:  Complex / O(n*log(n))", 40);
     write(2, "\n", 1);
     write_counts(bench);
 }

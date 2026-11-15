@@ -40,31 +40,31 @@ static unsigned int total_ops(t_bench *bench)
 
 void write_counts(t_bench *bench)
 {
-	write(2, "[bench] total_ops:  ", 21);
+	write(2, "[bench] total_ops:  ", 20);
 	ft_putnbr(total_ops(bench));
     write(2, "\n", 1);
-	write(2, "[bench] sa:  ", 14);
+	write(2, "[bench] sa:  ", 13);
 	ft_putnbr(bench->cntsa);
-	write(2, "  sb:  ", 8);
+	write(2, "  sb:  ", 7);
 	ft_putnbr(bench->cntsb);
-	write(2, "  ss:  ", 8);
+	write(2, "  ss:  ", 7);
 	ft_putnbr(bench->cntss);
-	write(2, "  pa:  ", 8);
+	write(2, "  pa:  ", 7);
 	ft_putnbr(bench->cntpa);
-	write(2, "  pb:  ", 8);
+	write(2, "  pb:  ", 7);
 	ft_putnbr(bench->cntpa);
     write(2, "\n", 1);
-	write(2, "[bench] ra:  ", 14);
+	write(2, "[bench] ra:  ", 13);
 	ft_putnbr(bench->cntra);
-	write(2, "  rb:  ", 8);
+	write(2, "  rb:  ", 7);
 	ft_putnbr(bench->cntrb);
-	write(2, "  rr:  ", 8);
+	write(2, "  rr:  ", 7);
 	ft_putnbr(bench->cntrr);
-	write(2, "  rra:  ", 9);
+	write(2, "  rra:  ", 8);
 	ft_putnbr(bench->cntrra);
-	write(2, "  rrb:  ", 9);
+	write(2, "  rrb:  ", 8);
 	ft_putnbr(bench->cntrrb);
-	write(2, "  rrr:  ", 9);
+	write(2, "  rrr:  ", 8);
 	ft_putnbr(bench->cntrrr);
     write(2, "\n", 1);
 }
