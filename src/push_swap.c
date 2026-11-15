@@ -12,34 +12,45 @@
 
 #include "push_swap.h"
 
-int main(int argc, char **argv)
+static int	print_error(t_node **a,	t_flag	*f)
 {
-    t_node *a;
-    t_node *b;
-    t_flag *f;
-    t_bench *bench;
+	free_stack(a);
+	free(f);
+	write(2, "Error\n", 6);
+	return (1);
+}
+// #include <stdio.h>
 
-    if (argc < 2)
-        return (0);
-    a = NULL;
-    b = NULL;
-    f = flags_init();
-    // if (f == NULL)
-    //     return (error);
-    if (!parseargs(argc, argv, &a, f))
-    {
-        write(2, "Error\n", 6);
-        return (0);
-    }
-    if (!no_doubles(a))
-    {
-        write(2, "Error\n", 6);
-        return (0);
-    }
-    // print_stack(a);
-    bench = bench_init(a);
-    sort(a, b, &f, &bench);
-    write_bench(bench, f);
-    // print_stack(a);
-    return (1);
+// void	print_stack(t_node *stack)
+// {
+// 	while (stack)
+// 	{
+// 		printf("%i\n", stack->value);
+// 		stack = stack->next;
+// 	}
+// }
+
+int	main(int argc, char **argv)
+{
+	t_node	*a;
+	t_node	*b;
+	t_flag	*f;
+
+	if (argc < 2)
+		return (0);
+	a = NULL;
+	b = NULL;
+	f = flags_init();
+	if (f == NULL)
+		return (1);
+	if (!parseargs(argc, argv, &a, f) || !no_doubles(a))
+	{
+		print_error(&a,f);
+		return (0);
+	}
+	sort(&a, &b, f);
+	free_stack(&a);
+	free_stack(&b);
+	free(f);
+	return (0);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                       :::      ::::::::    */
+/*   ft_split.c                                        :+:      :+:    :+:    */
+/*                                                   +:+ +:+         +:+      */
+/*   By: username <username@student.42tokyo.jp>    #+#  +:+       +#+         */
+/*                                               +#+#+#+#+#+   +#+            */
+/*   Created: 2026/11/14 12:23:11 by username         #+#    #+#              */
+/*   Updated: 2026/11/14 12:23:11 by username        ###   ########.fr        */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 
 static int	isword(char const *s, char c)
@@ -96,4 +108,8 @@ char	**ft_split(char const *s, char c)
 	if (fill_split(split, s, c) == 0)
 		return (NULL);
 	return (split);
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> cleaned-up-code

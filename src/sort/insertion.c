@@ -1,73 +1,110 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                       :::      ::::::::    */
+/*   insertion.c                                       :+:      :+:    :+:    */
+/*                                                   +:+ +:+         +:+      */
+/*   By: username <username@student.42tokyo.jp>    #+#  +:+       +#+         */
+/*                                               +#+#+#+#+#+   +#+            */
+/*   Created: 2026/11/14 12:23:15 by username         #+#    #+#              */
+/*   Updated: 2026/11/14 15:56:16 by username        ###   ########.fr        */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
-#include <stdio.h>
 
-// Find minimum in a
-// Rotate minimum to top of a
-// Push top of a to b
-// Repeat as long as there are values in a
-// Push sequentially from b to a
-
-static int findmin(t_node *stack)
+int	three_rule(t_node **a, int len)
 {
-    int help;
-    t_node *temp;
-    int current_index;
-    int min_index;
-
-    help = stack->value;
-    temp = stack->next;
-    current_index = 1;
-    min_index = 0;
-    while(temp)
-    {
-        if (temp->value < help)
-        {
-            help = temp->value;
-            min_index = current_index;
-        }
-        temp = temp->next;
-        current_index++;
-    }
-    return (min_index);
+	if (len <= 1)
+		return (0);
+	if (len == 2)
+	{
+		if ((*a)->value > (*a)->next->value)
+			sa(a);
+		return (0);
+	}
+	if (len == 3)
+	{
+		sort_three(a);
+		return (0);
+	}
+	return (1);
 }
 
-static void rotatetotop(t_node **stack, int count, t_bench **bench)
+static int	get_max_pos(t_node *b)
 {
-    int len;
+	int	max;
+	int	max_pos;
+	int	i;
 
-    len = stack_length(*stack);
-    if (len < 2)
-        return ;
-    if (count <= len / 2)
-    {
-        while (count > 0)
-        {
-            ra(stack, bench);
-            count--;
-        }
-    }
-    else
-    {
-        while (count < len)
-        {
-            rra(stack, bench);
-            count++;
-        }
-    }
+	max = b->value;
+	max_pos = 0;
+	i = 0;
+	while (b)
+	{
+		if (b->value > max)
+		{
+			max = b->value;
+			max_pos = i;
+		}
+		b = b->next;
+		i++;
+	}
+	return (max_pos);
 }
 
-void    insertion(t_node **a, t_node **b, t_bench **bench)
+static int	find_insert_pos(t_node *b, int val)
 {
-    int count;
+	t_node	*curr;
+	t_node	*next;
+	int		i;
 
-    if(!(*a) || !a)
-        return ;
-    while ((*a)->next)
-    {
-        count = findmin(*a);
-        rotatetotop(a, count, bench);
-        pb(a, b, bench);
-    }
-    while (*b)
-        pa(a, b, bench);
+	curr = b;
+	i = 0;
+	while (curr)
+	{
+		next = curr->next;
+		if (!next)
+			next = b;
+		if (curr->value > val && val > next->value)
+			return (i + 1);
+		curr = curr->next;
+		i++;
+	}
+	return (get_max_pos(b));
+}
+
+static void	stack_turn(int pos, int b_len, t_node **b)
+{
+	if (pos <= b_len / 2)
+	{
+		while (pos-- > 0)
+			rb(b);
+	}
+	else
+	{
+		pos = b_len - pos;
+		while (pos-- > 0)
+			rrb(b);
+	}
+}
+
+void	insertion(t_node **a, t_node **b)
+{
+	int	pos;
+
+	if (!three_rule(a, stack_length(*a)))
+		return ;
+	if (compute_disorder(*a) == 0.0)
+		return ;
+	pb(a, b);
+	pb(a, b);
+	while (*a)
+	{
+		pos = find_insert_pos(*b, (*a)->value);
+		stack_turn(pos, stack_length(*b), b);
+		pb(a, b);
+	}
+	stack_turn(get_max_pos(*b), stack_length(*b), b);
+	while (*b)
+		pa(a, b);
 }

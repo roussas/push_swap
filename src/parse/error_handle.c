@@ -1,95 +1,102 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                       :::      ::::::::    */
+/*   error_handle.c                                    :+:      :+:    :+:    */
+/*                                                   +:+ +:+         +:+      */
+/*   By: username <username@student.42tokyo.jp>    #+#  +:+       +#+         */
+/*                                               +#+#+#+#+#+   +#+            */
+/*   Created: 2026/11/14 12:23:07 by username         #+#    #+#              */
+/*   Updated: 2026/11/14 15:28:13 by username        ###   ########.fr        */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
-#include <stdio.h>
 
-int is_valid_int(char *s)
+int	is_valid_int(char *s)
 {
-    int i;
-    int digits;
+	int	i;
+	int	digits;
 
-    if (s == NULL)
-        return (0);
-    i = 0;
-    digits = 0;
-    while (s[i])
-    {
-        if (s[i] >= '0' && s[i] <= '9')
-            digits++;
-        else if (s[i] == '+' || s[i] == '-')
-        {
-            if (!(s[i + 1] >= '0' && s[i + 1] <= '9'))
-                return (0);
-            if (i != 0 && s[i - 1] != ' ')
-                return (0);
-        }
-        else if (s[i] != ' ')
-            return (0);
-        i++;
-    }
-    return (digits > 0);
+	if (s == NULL)
+		return (0);
+	i = 0;
+	digits = 0;
+	while (s[i])
+	{
+		if (s[i] >= '0' && s[i] <= '9')
+			digits++;
+		else if (s[i] == '+' || s[i] == '-')
+		{
+			if (!(s[i + 1] >= '0' && s[i + 1] <= '9'))
+				return (0);
+			if (i != 0 && s[i - 1] != ' ')
+				return (0);
+		}
+		else if (s[i] != ' ')
+			return (0);
+		i++;
+	}
+	return (digits > 0);
 }
 
-void free_list (char **l)
+void	free_list(char **l)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while(l[i])
-    {
-        free(l[i]);
-        i++;
-    }
-    free(l);
+	if (l == NULL)
+		return ;
+	i = 0;
+	while (l[i])
+	{
+		free(l[i]);
+		i++;
+	}
+	free(l);
 }
 
-static int count_numbers(char **l)
+int	count_numbers(char **l)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (l[i])
-        i++;
-    return (i);
+	i = 0;
+	while (l[i])
+		i++;
+	return (i);
 }
 
-void add_back(t_node **a, t_node *new)
+void	add_back(t_node **a, t_node *new)
 {
-    t_node  *last;
+	t_node	*last;
 
-    if (*a == NULL)
-    {
-        *a = new;
-        return ;
-    }
-    last = *a;
-    while (last->next)
-        last = last->next;
-    last->next = new;
+	if (a == NULL || new == NULL)
+		return ;
+	if (*a == NULL)
+	{
+		*a = new;
+		return ;
+	}
+	last = *a;
+	while (last->next)
+		last = last->next;
+	last->next = new;
 }
 
-t_node *str_to_node(char *s)
+int	no_doubles(t_node *a)
 {
-    char    **l;
-    int     i;
-    t_node  *a;
-    t_node  *n;
+	t_node	*tmp;
+	t_node	*current;
 
-    a = NULL;
-    l = ft_split(s, ' ');
-    if (l == NULL)
-        return (NULL);
-    i = count_numbers(l) - 1;
-    while (i >= 0)
-    {
-        n = new_t_node((int)ft_atol(l[i]));
-        if (n == NULL)
-        {
-            free_stack(&a);
-            free_list(l);
-            return (NULL);
-        }
-        push_top(&a, n);
-        i--;
-    }
-    free_list(l);
-    return (a);
+	tmp = a;
+	while (tmp)
+	{
+		current = tmp->next;
+		while (current)
+		{
+			if (tmp->value == current->value)
+				return (0);
+			current = current->next;
+		}
+		tmp = tmp->next;
+	}
+	return (1);
 }

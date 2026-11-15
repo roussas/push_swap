@@ -7,11 +7,13 @@ BENCH_SRCS	= src/bench/bench.c \
 			  src/bench/disorder.c \
 			  src/bench/ft_uitoa.c \
 			  src/bench/write_counts.c
-PARSE_SRCS	= src/parse/error_handle.c \
+PARSE_SRCS	= src/parse/atoi_utils.c \
+			  src/parse/error_handle.c \
 			  src/parse/ft_atol.c \
 			  src/parse/ft_split.c \
 			  src/parse/ft_strncmp.c \
 			  src/parse/parse_args.c \
+			  src/parse/parse_arg_extra.c 
 			  src/parse/ranker.c
 SORT_SRCS	= src/sort/complex.c \
 			  src/sort/insertion.c \
@@ -22,6 +24,7 @@ STACK_SRCS  = src/stack/ops_logic.c \
 			  src/stack/ops_swap_push.c \
 			  src/stack/print_stack.c \
 			  src/stack/stack_utils.c
+			  src/stack/extra_utils.c 
 SRCS		= src/push_swap.c \
 			  $(BENCH_SRCS) \
 			  $(PARSE_SRCS) \
