@@ -61,7 +61,7 @@ void	push_to(t_node **from, t_node **to);
 void	swap(t_node **stack);
 void	rotate(t_node **stack);
 void	reverse_rotate(t_node **stack);
-//DEBUG ONLY: remove before submit
+
 void	pa(t_node **a, t_node **b, t_bench **bench);
 void	pb(t_node **a, t_node **b, t_bench **bench);
 void	sa(t_node **a, t_bench **bench);
@@ -69,35 +69,35 @@ void	sb(t_node **b, t_bench **bench);
 void	ss(t_node **a, t_node **b, t_bench **bench);
 void	ra(t_node **a, t_bench **bench);
 void	rb(t_node **b, t_bench **bench);
+void	rr(t_node **a, t_node **b, t_bench **bench);
 void	rra(t_node **a, t_bench **bench);
 void	rrb(t_node **b, t_bench **bench);
 void	rrr(t_node **a, t_node **b, t_bench **bench);
-void	rr(t_node **a, t_node **b, t_bench **bench);
 
 int		is_sorted(t_node **stack);
 int		max_bits(t_node **a);
-
  
 // Parsing data
-char	**ft_split(char const *s, char c);
-int	ft_strncmp(const char *s1, const char *s2, size_t n);
-
 t_flag	*flags_init();
+
+char	**ft_split(char const *s, char c);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+
 int		parseargs(int count, char **args, t_node **a, t_flag *f);
+int		checkarg(const char *arg);
+int		parseflags(const char *arg, t_flag *f);
+int		parsedata(const char *arg, t_node **a);
 int		is_valid_int(char *s);
+int		is_valid_data(char *s);
 t_node	*str_to_node(char *s);
 void	add_back(t_node **a, t_node *new);
+
 void	free_list (char **l);
 int		no_doubles(t_node *a);
-
 
 // Ranking functions
 int		rank_set(t_node *node, t_node **a);
 void	rank_list(t_node **a);
-
-// Sorting fork
-void	sort(t_node **a, t_node **b, t_flag **f, t_bench **bench);
-void	adaptive_sort(t_node **a, t_node **b, t_bench **bench);
 
 // Benchmarking
 t_bench	*bench_init(t_node *a);
@@ -107,11 +107,16 @@ char	*ft_uitoa(unsigned int n);
 void	write_bench(t_bench *bench, t_flag *flag);
 void	write_counts(t_bench *bench);
 
+// Sorting fork
+void	sort(t_node **a, t_node **b, t_flag **f, t_bench **bench);
+void	adaptive_sort(t_node **a, t_node **b, t_bench **bench);
+
 // Sorting algorithms
 void    insertion(t_node **a, t_node **b, t_bench **bench);
 void    chunkbased(t_node **a, t_node **b);
 void	rangebased_sort(t_node **a, t_node **b, t_bench **bench);
 void	radix_sort(t_node **a, t_node **b, t_bench **bench);
+
 void	reverse_rotate(t_node **stack);
 void	rotate(t_node **stack);
 void	swap(t_node **stack);
@@ -142,12 +147,6 @@ void	rangebased_insertion(t_node **a, t_node **b, int n, t_bench **bench);
 void    sort_chunk(t_node **a, t_node **b, int n, t_bench **bench);
 void    rotate_to(t_node **b, int pos, t_bench **bench);
 void	sort_three(t_node **a, t_bench **bench);
-int is_valid_data(char *s);
-int parsedata(const char *arg, t_node **a);
-int parseflags(const char *arg, t_flag *f);
-t_flag *flags_init();
-int checkarg(const char *arg);
-int parseargs(int count, char **args, t_node **a, t_flag *f);
-int	ft_strncmp(const char *s1, const char *s2, size_t n);
+
 
 #endif
