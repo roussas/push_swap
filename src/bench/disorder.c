@@ -14,27 +14,33 @@
 
 char	*strdisorder(double disorder)
 {
-	int		d;
+	double	d;
 	char	*str;
 	int		i;
 
 	str = malloc(6 * sizeof(char));
 	if (str == NULL)
 		return (NULL);
-	d = (int)(disorder * 10);
-	i = 0;
-	while (i < 5)
+	if (disorder == 1.0)
+		{
+			str = "100.00";
+			return (str);
+		}
+	d = disorder * 10000 ;
+	d = (int)d;
+	i = 4;
+	while (i >= 0)
 	{
 		if (i != 2)
 		{
-			str[i] = (d % 10) + '0';
+			str[i] = ((int)d % 10) + '0';
 			d = d / 10;
 		}
 		else
 			str[i] = '.';
-		i++;
+		i--;
 	}
-	str[i] = '\0';
+	str[5] = '\0';
 	return (str);
 }
 

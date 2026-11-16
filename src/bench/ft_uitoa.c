@@ -40,11 +40,6 @@ char	*ft_uitoa(unsigned int n)
 	nstr[len] = '\0';
 	if (n == 0)
 		nstr[0] = '0';
-	if (n < 0)
-	{
-		nstr[0] = '-';
-		n = -n;
-	}
 	while (n > 0)
 	{
 		nstr[--len] = (n % 10) + '0';

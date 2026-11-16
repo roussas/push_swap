@@ -38,12 +38,13 @@ t_bench	*bench_init(t_node *a)
 
 void	write_bench(t_bench *bench, t_flag *flag)
 {
-	int	total;
+	char *str;
 
+	str = strdisorder(bench->disorder);
 	write(2, "[bench] disorder:  ", 19);
-	write(2, strdisorder(bench->disorder), 5);
+	write(2, str, 5);
+	free(str);
 	write(2, "%\n", 2);
-	total = bench->cntpa + bench->cntpb;
 	if (flag->strategy == 0 || flag->strategy == 8)
 	{
 		if (bench->disorder < 0.2)
