@@ -46,11 +46,11 @@ void	write_bench(t_bench *bench, t_flag *flag)
 	if (flag->strategy == 0 || flag->strategy == 8)
 	{
 		if (bench->disorder < 0.2)
-			write(2, "[bench] strategy:  Adaptive / O(N^2)\n", 37);
+			write(2, "[bench] strategy:  Adaptive / O(n^2)", 36);
 		else if (bench->disorder >= 0.2 && bench->disorder < 0.5)
-			write(2, "[bench] strategy:  Adaptive / O(N*sqrt(N))\n", 44);
+			write(2, "[bench] strategy:  Adaptive / O(n*sqrt(n))", 43);
 		else if (bench->disorder >= 0.5)
-			write(2, "[bench] strategy:  Adaptive / O(N *logN)\n", 40);
+			write(2, "[bench] strategy:  Adaptive / O(n*log(n))", 41);
 	}
 	else if (flag->strategy == 1)
 		write(2, "[bench] strategy:  Simple / O(n^2)", 34);
