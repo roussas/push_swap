@@ -5,7 +5,6 @@ OBJ_DIR		= obj
 
 BENCH_SRCS	= src/bench/bench.c \
 			  src/bench/disorder.c \
-			  src/bench/ft_uitoa.c \
 			  src/bench/write_counts.c
 PARSE_SRCS	= src/parse/atoi_utils.c \
 			  src/parse/error_handle.c \

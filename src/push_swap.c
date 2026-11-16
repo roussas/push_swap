@@ -40,15 +40,16 @@ int	main(int argc, char **argv)
 	a = NULL;
 	b = NULL;
 	f = flags_init();
-	bench = NULL;
 	if (f == NULL)
 		return (1);
 	if (!parseargs(argc, argv, &a, f) || !no_doubles(a))
 	{
 		print_error(&a, f);
-		return (0);
+		return (1);
 	}
 	bench = bench_init(a);
+	if(bench == NULL)
+		return (1);
 	sort(&a, &b, &f, &bench);
 	if (f->bench)
 		write_bench(bench, f);
