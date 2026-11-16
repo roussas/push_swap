@@ -6,7 +6,7 @@
 /*   By: username <username@student.42tokyo.jp>    #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/14 12:26:23 by username         #+#    #+#              */
-/*   Updated: 2026/11/14 13:16:56 by username        ###   ########.fr        */
+/*   Updated: 2026/11/16 15:03:02 by username        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,30 +78,30 @@ int	sqrt_approx(int nb)
 	return (i - 1);
 }
 
-int    findmax_n(t_node *stack, int n)
+int	findmax_n(t_node *stack, int n)
 {
-    int     max_index;
-    int     current_index;
-    t_node  *max_node;
-    t_node  *current;
+	int		max_index;
+	int		current_index;
+	t_node	*max_node;
+	t_node	*current;
 
-    if (!stack || n <= 0)
-        return (-1);
-    max_index = 0;
-    current_index = 0;
-    max_node = stack;
-    current = stack;
-    while (current && current_index < n)
-    {
-        if (current->rank > max_node->rank)
-        {
-            max_node = current;
-            max_index = current_index;
-        }
-        current = current->next;
-        current_index++;
-    }
-    return (max_index);
+	if (!stack || n <= 0)
+		return (-1);
+	max_index = 0;
+	current_index = 0;
+	max_node = stack;
+	current = stack;
+	while (current && current_index < n)
+	{
+		if (current->rank > max_node->rank)
+		{
+			max_node = current;
+			max_index = current_index;
+		}
+		current = current->next;
+		current_index++;
+	}
+	return (max_index);
 }
 
 void	sort_three(t_node **a, t_bench **bench)

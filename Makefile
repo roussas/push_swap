@@ -20,7 +20,6 @@ SORT_SRCS	= src/sort/complex.c \
 STACK_SRCS  = src/stack/ops_logic.c \
 			  src/stack/ops_rotate.c \
 			  src/stack/ops_swap_push.c \
-			  src/stack/print_stack.c \
 			  src/stack/stack_utils.c \
 			  src/stack/extra_utils.c 
 SRCS		= src/push_swap.c \

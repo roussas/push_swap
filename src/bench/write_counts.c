@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: yaozhou <yaozhou@student.42vienna.com>     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/10/08 11:33:24 by yaozhou           #+#    #+#             */
-/*   Updated: 2026/10/20 15:24:48 by yaozhou          ###   ########.fr       */
+/*                                                       :::      ::::::::    */
+/*   write_counts.c                                    :+:      :+:    :+:    */
+/*                                                   +:+ +:+         +:+      */
+/*   By: username <username@student.42tokyo.jp>    #+#  +:+       +#+         */
+/*                                               +#+#+#+#+#+   +#+            */
+/*   Created: 2026/10/08 11:33:24 by username         #+#    #+#              */
+/*   Updated: 2026/11/16 15:54:24 by username        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <unistd.h>
 
 static void	ft_putnbr(unsigned int n)
 {
@@ -20,40 +19,20 @@ static void	ft_putnbr(unsigned int n)
 	write(2, &"0123456789"[n % 10], 1);
 }
 
-static unsigned int total_ops(t_bench *bench)
+static unsigned int	total_ops(t_bench *bench)
 {
 	unsigned int	total_ops;
 
-	total_ops = bench->cntpa \
-				+ bench->cntpb \
-				+ bench->cntsa \
-				+ bench->cntsb \
-				+ bench->cntss \
-				+ bench->cntra \
-				+ bench->cntrb \
-				+ bench->cntrr \
-				+ bench->cntrra \
-				+ bench->cntrrb \
-				+ bench->cntrrr;
+	total_ops = bench->cntpa + bench->cntpb + bench->cntsa + bench->cntsb
+		+bench->cntss + bench->cntra + bench->cntrb + bench->cntrr
+		+bench->cntrra
+		+bench->cntrrb + bench->cntrrr;
 	return (total_ops);
 }
 
-void write_counts(t_bench *bench)
+static void	write_counts1(t_bench *bench)
 {
-	write(2, "[bench] total_ops:  ", 20);
-	ft_putnbr(total_ops(bench));
-    write(2, "\n", 1);
-	write(2, "[bench] sa:  ", 13);
-	ft_putnbr(bench->cntsa);
-	write(2, "  sb:  ", 7);
-	ft_putnbr(bench->cntsb);
-	write(2, "  ss:  ", 7);
-	ft_putnbr(bench->cntss);
-	write(2, "  pa:  ", 7);
-	ft_putnbr(bench->cntpa);
-	write(2, "  pb:  ", 7);
-	ft_putnbr(bench->cntpa);
-    write(2, "\n", 1);
+	write(2, "\n", 1);
 	write(2, "[bench] ra:  ", 13);
 	ft_putnbr(bench->cntra);
 	write(2, "  rb:  ", 7);
@@ -66,5 +45,23 @@ void write_counts(t_bench *bench)
 	ft_putnbr(bench->cntrrb);
 	write(2, "  rrr:  ", 8);
 	ft_putnbr(bench->cntrrr);
-    write(2, "\n", 1);
+	write(2, "\n", 1);
+}
+
+void	write_counts(t_bench *bench)
+{
+	write(2, "[bench] total_ops:  ", 20);
+	ft_putnbr(total_ops(bench));
+	write(2, "\n", 1);
+	write(2, "[bench] sa:  ", 13);
+	ft_putnbr(bench->cntsa);
+	write(2, "  sb:  ", 7);
+	ft_putnbr(bench->cntsb);
+	write(2, "  ss:  ", 7);
+	ft_putnbr(bench->cntss);
+	write(2, "  pa:  ", 7);
+	ft_putnbr(bench->cntpa);
+	write(2, "  pb:  ", 7);
+	ft_putnbr(bench->cntpb);
+	write_counts1(bench);
 }

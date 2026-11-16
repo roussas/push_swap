@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: kpagkalo <kpagkalo@student.42vienna.c      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/10/27 13:34:25 by kpagkalo          #+#    #+#             */
-/*   Updated: 2026/11/14 15:16:07 by yaozhou          ###   ########.fr       */
+/*                                                       :::      ::::::::    */
+/*   push_swap.h                                       :+:      :+:    :+:    */
+/*                                                   +:+ +:+         +:+      */
+/*   By: username <username@student.42tokyo.jp>    #+#  +:+       +#+         */
+/*                                               +#+#+#+#+#+   +#+            */
+/*   Created: 2026/10/27 13:34:25 by username         #+#    #+#              */
+/*   Updated: 2026/11/16 15:33:16 by username        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 # define PUSH_SWAP_H
 
 # include <stdlib.h>
-# include <stdio.h> //DEBUG ONLY: remove before submit
 # include <unistd.h>
-#include <stddef.h>
+# include <stddef.h>
 
 # define SMALL_INPUT 5
 
@@ -29,8 +28,8 @@ typedef struct t_node
 
 typedef struct s_flag
 {
-	int		strategy;
-	int		bench;
+	int	strategy;
+	int	bench;
 }	t_flag;
 
 typedef struct s_bench
@@ -55,7 +54,6 @@ void	push_top(t_node **stack, t_node *new);
 t_node	*pop_top(t_node **stack);
 int		stack_length(t_node *stack);
 void	free_stack(t_node **stack);
-void	print_stack(t_node *stack);
 
 void	push_to(t_node **from, t_node **to);
 void	swap(t_node **stack);
@@ -73,12 +71,11 @@ void	rr(t_node **a, t_node **b, t_bench **bench);
 void	rra(t_node **a, t_bench **bench);
 void	rrb(t_node **b, t_bench **bench);
 void	rrr(t_node **a, t_node **b, t_bench **bench);
-
 int		is_sorted(t_node **stack);
 int		max_bits(t_node **a);
- 
+
 // Parsing data
-t_flag	*flags_init();
+t_flag	*flags_init(void);
 
 char	**ft_split(char const *s, char c);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
@@ -92,7 +89,7 @@ int		is_valid_data(char *s);
 t_node	*str_to_node(char *s);
 void	add_back(t_node **a, t_node *new);
 
-void	free_list (char **l);
+void	free_list(char **l);
 int		no_doubles(t_node *a);
 
 // Ranking functions
@@ -101,7 +98,7 @@ void	rank_list(t_node **a);
 
 // Benchmarking
 t_bench	*bench_init(t_node *a);
-double  compute_disorder(t_node *stack);
+double	compute_disorder(t_node *stack);
 char	*strdisorder(double disorder);
 char	*ft_uitoa(unsigned int n);
 void	write_bench(t_bench *bench, t_flag *flag);
@@ -112,8 +109,8 @@ void	sort(t_node **a, t_node **b, t_flag **f, t_bench **bench);
 void	adaptive_sort(t_node **a, t_node **b, t_bench **bench);
 
 // Sorting algorithms
-void    insertion(t_node **a, t_node **b, t_bench **bench);
-void    chunkbased(t_node **a, t_node **b);
+void	insertion(t_node **a, t_node **b, t_bench **bench);
+void	chunkbased(t_node **a, t_node **b);
 void	rangebased_sort(t_node **a, t_node **b, t_bench **bench);
 void	radix_sort(t_node **a, t_node **b, t_bench **bench);
 
@@ -144,9 +141,8 @@ int		comp(char *s1, char *s2);
 int		findmax_n(t_node *stack, int n);
 int		pushrange(t_node **a, t_node **b, int rtop, t_bench **bench);
 void	rangebased_insertion(t_node **a, t_node **b, int n, t_bench **bench);
-void    sort_chunk(t_node **a, t_node **b, int n, t_bench **bench);
-void    rotate_to(t_node **b, int pos, t_bench **bench);
+void	sort_chunk(t_node **a, t_node **b, int n, t_bench **bench);
+void	rotate_to(t_node **b, int pos, t_bench **bench);
 void	sort_three(t_node **a, t_bench **bench);
-
 
 #endif

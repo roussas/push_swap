@@ -6,7 +6,7 @@
 /*   By: username <username@student.42tokyo.jp>    #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/10/27 13:34:03 by username         #+#    #+#              */
-/*   Updated: 2026/11/16 14:05:42 by username        ###   ########.fr        */
+/*   Updated: 2026/11/16 15:32:49 by username        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,6 @@ static void	free_all(t_node **a, t_node **b, t_flag *f, t_bench *bench)
 	free(bench);
 	free(f);
 }
-
-// #include <stdio.h>
-
-// void	print_stack(t_node *stack)
-// {
-// 	while (stack)
-// 	{
-// 		printf("%i\n", stack->value);
-// 		stack = stack->next;
-// 	}
-// }
 
 int	main(int argc, char **argv)
 {
