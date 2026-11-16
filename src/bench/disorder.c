@@ -11,21 +11,31 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
+static char *ilovemalloc(char *str)
+{
+	str[0] = '1';
+	str[1] = '0';
+	str[2] = '0';
+	str[3] = '.';
+	str[4] = '0';
+	str[5] = '0';
+	str[6] = '\0';
+	return (str);
+}
 char	*strdisorder(double disorder)
 {
 	double	d;
 	char	*str;
 	int		i;
 
-	str = malloc(6 * sizeof(char));
+	str = malloc(7 * sizeof(char));
 	if (str == NULL)
 		return (NULL);
 	if (disorder == 1.0)
-		{
-			str = "100.00";
-			return (str);
-		}
+	{	
+		ilovemalloc(str);
+		return(str);
+	}
 	d = disorder * 10000 ;
 	d = (int)d;
 	i = 4;
