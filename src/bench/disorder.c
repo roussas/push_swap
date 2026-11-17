@@ -14,6 +14,9 @@
 
 static char	*ilovemalloc(char *str)
 {
+	str = malloc(7 * sizeof(char));
+	if (str == NULL)
+		return (NULL);
 	str[0] = '1';
 	str[1] = '0';
 	str[2] = '0';
