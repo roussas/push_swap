@@ -85,6 +85,7 @@ void	rrr(t_node **a, t_node **b, t_bench **bench)
 		return ;
 	reverse_rotate(a);
 	reverse_rotate(b);
-	write(1, "rrr\n", 4);
+	if ((*bench)->countsonly == 0)
+		write(1, "rrr\n", 4);
 	(*bench)->cntrrr++;
 }

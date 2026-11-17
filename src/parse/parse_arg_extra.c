@@ -38,6 +38,8 @@ int	parseflags(const char *arg, t_flag *f)
 		strat = 4;
 	else if (!ft_strncmp(arg, "--adaptive", 11))
 		strat = 8;
+	else if (!ft_strncmp(arg, "--counts-only", 14))
+		f->countsonly = 1;
 	else
 		return (0);
 	strat = f->strategy | strat;

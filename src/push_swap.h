@@ -30,11 +30,13 @@ typedef struct s_flag
 {
 	int	strategy;
 	int	bench;
+	int countsonly;
 }	t_flag;
 
 typedef struct s_bench
 {
 	double			disorder;
+	int countsonly;
 	unsigned int	cntpa;
 	unsigned int	cntpb;
 	unsigned int	cntsa;
@@ -103,7 +105,7 @@ int		rank_set(t_node *node, t_node **a);
 void	rank_list(t_node **a);
 
 // Benchmarking
-t_bench	*bench_init(t_node *a);
+t_bench	*bench_init(t_node *a, t_flag *f);
 double	compute_disorder(t_node *stack);
 char	*strdisorder(double disorder);
 char	*ft_uitoa(unsigned int n);
@@ -150,5 +152,8 @@ void	rangebased_insertion(t_node **a, t_node **b, int n, t_bench **bench);
 void	sort_chunk(t_node **a, t_node **b, int n, t_bench **bench);
 void	rotate_to(t_node **b, int pos, t_bench **bench);
 void	sort_three(t_node **a, t_bench **bench);
+
+unsigned int	total_ops(t_bench *bench);
+void	ft_putnbr1(unsigned int n);
 
 #endif

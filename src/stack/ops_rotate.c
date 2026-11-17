@@ -17,7 +17,8 @@ void	ra(t_node **a, t_bench **bench)
 	if (a && *a && (*a)->next)
 	{
 		rotate(a);
-		write(1, "ra\n", 3);
+		if ((*bench)->countsonly == 0)
+			write(1, "ra\n", 3);
 		(*bench)->cntra++;
 	}
 }
@@ -27,7 +28,8 @@ void	rb(t_node **b, t_bench **bench)
 	if (b && *b && (*b)->next)
 	{
 		rotate(b);
-		write(1, "rb\n", 3);
+		if ((*bench)->countsonly == 0)
+			write(1, "rb\n", 3);
 		(*bench)->cntrb++;
 	}
 }
@@ -38,7 +40,8 @@ void	rr(t_node **a, t_node **b, t_bench **bench)
 	{
 		rotate(a);
 		rotate(b);
-		write(1, "rr\n", 3);
+		if ((*bench)->countsonly == 0)
+			write(1, "rr\n", 3);
 		(*bench)->cntrr++;
 	}
 }
@@ -48,7 +51,8 @@ void	rra(t_node **a, t_bench **bench)
 	if (a && *a && (*a)->next)
 	{
 		reverse_rotate(a);
-		write(1, "rra\n", 4);
+		if ((*bench)->countsonly == 0)
+			write(1, "rra\n", 4);
 		(*bench)->cntrra++;
 	}
 }
@@ -58,7 +62,8 @@ void	rrb(t_node **b, t_bench **bench)
 	if (b && *b && (*b)->next)
 	{
 		reverse_rotate(b);
-		write(1, "rrb\n", 4);
+		if ((*bench)->countsonly == 0)
+			write(1, "rrb\n", 4);
 		(*bench)->cntrrb++;
 	}
 }

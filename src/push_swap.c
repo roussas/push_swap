@@ -47,12 +47,19 @@ int	main(int argc, char **argv)
 		print_error(&a, f);
 		return (1);
 	}
-	bench = bench_init(a);
+	bench = bench_init(a, f);
 	if (bench == NULL)
 		return (1);
 	sort(&a, &b, &f, &bench);
-	if (f->bench)
+	if (f->bench && f->countsonly == 0)
 		write_bench(bench, f);
+	else if (f->bench && f->countsonly == 1)
+	{
+		write_bench(bench, f);
+		ft_putnbr1(total_ops(bench));
+	}
+	else if (f->bench == 0 && f->countsonly == 1)
+		ft_putnbr1(total_ops(bench));
 	free_all(&a, &b, f, bench);
 	return (0);
 }

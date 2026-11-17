@@ -21,6 +21,7 @@ t_flag	*flags_init(void)
 		return (NULL);
 	f->bench = 0;
 	f->strategy = 0;
+	f->countsonly = 0;
 	return (f);
 }
 
