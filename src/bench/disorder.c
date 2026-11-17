@@ -30,14 +30,15 @@ char	*strdisorder(double disorder)
 	char	*str;
 	int		i;
 
-	str = malloc(7 * sizeof(char));
-	if (str == NULL)
-		return (NULL);
+	str = NULL;
 	if (disorder == 1.0)
 		return (ilovemalloc(str));
+	str = malloc(6 * sizeof(char));
+	if (str == NULL)
+		return (NULL);
 	d = disorder * 10000;
 	i = 4;
-	while (i-- >= 0)
+	while (i >= 0)
 	{
 		if (i != 2)
 		{
@@ -46,6 +47,7 @@ char	*strdisorder(double disorder)
 		}
 		else
 			str[i] = '.';
+		i--;
 	}
 	str[5] = '\0';
 	return (str);
