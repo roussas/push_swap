@@ -6,7 +6,7 @@
 /*   By: username <username@student.42tokyo.jp>    #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/10/27 13:34:25 by username         #+#    #+#              */
-/*   Updated: 2026/11/16 15:33:16 by username        ###   ########.fr        */
+/*   Updated: 2026/11/17 11:25:42 by username        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,12 @@ typedef struct s_bench
 	unsigned int	cntrrb;
 	unsigned int	cntrrr;
 }	t_bench;
+
+typedef struct s_chunk
+{
+	int	lo;
+	int	hi;
+}	t_chunk;
 
 t_node	*new_t_node(int value);
 

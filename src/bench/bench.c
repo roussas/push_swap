@@ -6,7 +6,7 @@
 /*   By: username <username@student.42tokyo.jp>    #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/16 15:48:40 by username         #+#    #+#              */
-/*   Updated: 2026/11/16 16:20:36 by username        ###   ########.fr        */
+/*   Updated: 2026/11/17 11:37:32 by username        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_bench	*bench_init(t_node *a)
 
 void	write_bench(t_bench *bench, t_flag *flag)
 {
-	char *str;
+	char	*str;
 
 	str = strdisorder(bench->disorder);
 	write(2, "[bench] disorder:  ", 19);

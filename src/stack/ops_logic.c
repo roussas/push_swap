@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ops_logic.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: kpagkalo <kpagkalo@student.42vienna.c      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/10/27 13:33:18 by kpagkalo          #+#    #+#             */
-/*   Updated: 2026/10/27 13:43:04 by kpagkalo         ###   ########.fr       */
+/*                                                       :::      ::::::::    */
+/*   ops_logic.c                                       :+:      :+:    :+:    */
+/*                                                   +:+ +:+         +:+      */
+/*   By: username <username@student.42tokyo.jp>    #+#  +:+       +#+         */
+/*                                               +#+#+#+#+#+   +#+            */
+/*   Created: 2026/10/27 13:33:18 by username         #+#    #+#              */
+/*   Updated: 2026/11/17 11:26:09 by username        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	reverse_rotate(t_node **stack)
 	}
 	tmp->next = *stack;
 	*stack = tmp;
-	tmp2 -> next = NULL;
+	tmp2->next = NULL;
 }
 
 void	rrr(t_node **a, t_node **b, t_bench **bench)

@@ -6,17 +6,11 @@
 /*   By: username <username@student.42tokyo.jp>    #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/16 15:32:13 by username         #+#    #+#              */
-/*   Updated: 2026/11/16 15:32:13 by username        ###   ########.fr        */
+/*   Updated: 2026/11/17 11:25:19 by username        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-typedef struct s_chunk
-{
-	int	lo;
-	int	hi;
-}	t_chunk;
 
 static void	rotate_a(t_node **a, int count, int reverse, t_bench **bench)
 {
@@ -57,8 +51,7 @@ static void	bring_to_top(t_node **a, t_chunk *t, t_bench **bench)
 		rotate_a(a, i - last, 1, bench);
 }
 
-static void	push_chunk(t_node **a, t_node **b,
-		t_chunk *t, t_bench **bench)
+static void	push_chunk(t_node **a, t_node **b, t_chunk *t, t_bench **bench)
 {
 	int	mid;
 	int	count;

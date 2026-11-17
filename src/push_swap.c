@@ -6,7 +6,7 @@
 /*   By: username <username@student.42tokyo.jp>    #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/10/27 13:34:03 by username         #+#    #+#              */
-/*   Updated: 2026/11/16 15:32:49 by username        ###   ########.fr        */
+/*   Updated: 2026/11/17 11:26:20 by username        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	bench = bench_init(a);
-	if(bench == NULL)
+	if (bench == NULL)
 		return (1);
 	sort(&a, &b, &f, &bench);
 	if (f->bench)

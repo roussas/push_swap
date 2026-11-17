@@ -6,13 +6,13 @@
 /*   By: username <username@student.42tokyo.jp>    #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/16 15:29:23 by username         #+#    #+#              */
-/*   Updated: 2026/11/16 15:29:23 by username        ###   ########.fr        */
+/*   Updated: 2026/11/17 11:37:36 by username        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static char *ilovemalloc(char *str)
+static char	*ilovemalloc(char *str)
 {
 	str[0] = '1';
 	str[1] = '0';
@@ -23,6 +23,7 @@ static char *ilovemalloc(char *str)
 	str[6] = '\0';
 	return (str);
 }
+
 char	*strdisorder(double disorder)
 {
 	double	d;
@@ -33,23 +34,18 @@ char	*strdisorder(double disorder)
 	if (str == NULL)
 		return (NULL);
 	if (disorder == 1.0)
-	{	
-		ilovemalloc(str);
-		return(str);
-	}
-	d = disorder * 10000 ;
-	d = (int)d;
+		return (ilovemalloc(str));
+	d = disorder * 10000;
 	i = 4;
-	while (i >= 0)
+	while (i-- >= 0)
 	{
 		if (i != 2)
 		{
-			str[i] = ((int)d % 10) + '0';
+			str[i] = ((int) d % 10) + '0';
 			d = d / 10;
 		}
 		else
 			str[i] = '.';
-		i--;
 	}
 	str[5] = '\0';
 	return (str);
