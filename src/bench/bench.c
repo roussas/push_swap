@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-t_bench	*bench_init(t_node *a, t_flag *f)
+t_bench	*bench_init(t_node *a)
 {
 	t_bench	*bench;
 
@@ -20,10 +20,6 @@ t_bench	*bench_init(t_node *a, t_flag *f)
 	if (bench == NULL)
 		return (NULL);
 	bench->disorder = compute_disorder(a);
-	if (f->countsonly)
-		bench->countsonly = 1;
-	else
-		bench->countsonly = 0;
 	bench->cntpa = 0;
 	bench->cntpb = 0;
 	bench->cntsa = 0;
@@ -38,17 +34,10 @@ t_bench	*bench_init(t_node *a, t_flag *f)
 	return (bench);
 }
 
-void	ft_putnbr1(unsigned int n)
-{
-	if (n / 10 > 0)
-		ft_putnbr1(n / 10);
-	write(1, &"0123456789"[n % 10], 1);
-}
-
 void	write_bench(t_bench *bench, t_flag *flag)
 {
 	char	*str;
-	
+
 	str = strdisorder(bench->disorder);
 	write(2, "[bench] disorder:  ", 19);
 	write(2, str, 5);
@@ -59,7 +48,7 @@ void	write_bench(t_bench *bench, t_flag *flag)
 		if (bench->disorder < 0.2)
 			write(2, "[bench] strategy:  Adaptive / O(n^2)", 36);
 		else if (bench->disorder >= 0.2 && bench->disorder < 0.5)
-			write(2, "[bench] strategy:  Adaptive / O(n*sqrt(n))", 43);
+			write(2, "[bench] strategy:  Adaptive / O(n*sqrt(n))", 42);
 		else if (bench->disorder >= 0.5)
 			write(2, "[bench] strategy:  Adaptive / O(n*log(n))", 41);
 	}

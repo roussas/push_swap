@@ -17,8 +17,7 @@ void	sa(t_node **a, t_bench **bench)
 	if (a && *a && (*a)->next)
 	{
 		swap(a);
-		if ((*bench)->countsonly == 0)
-			write(1, "sa\n", 3);
+		write(1, "sa\n", 3);
 		(*bench)->cntsa++;
 	}
 }
@@ -28,8 +27,7 @@ void	sb(t_node **b, t_bench **bench)
 	if (b && *b && (*b)->next)
 	{
 		swap(b);
-		if ((*bench)->countsonly == 0)
-			write(1, "sb\n", 3);
+		write(1, "sb\n", 3);
 		(*bench)->cntsb++;
 	}
 }
@@ -40,8 +38,7 @@ void	ss(t_node **a, t_node **b, t_bench **bench)
 	{
 		swap(a);
 		swap(b);
-		if ((*bench)->countsonly == 0)
-			write(1, "ss\n", 3);
+		write(1, "ss\n", 3);
 		(*bench)->cntss++;
 	}
 }
@@ -51,8 +48,7 @@ void	pa(t_node **a, t_node **b, t_bench **bench)
 	if (b && *b)
 	{
 		push_to(b, a);
-		if ((*bench)->countsonly == 0)
-			write(1, "pa\n", 3);
+		write(1, "pa\n", 3);
 		(*bench)->cntpa++;
 	}
 }
@@ -62,8 +58,7 @@ void	pb(t_node **a, t_node **b, t_bench **bench)
 	if (a && *a)
 	{
 		push_to(a, b);
-		if ((*bench)->countsonly == 0)
-			write(1, "pb\n", 3);
+		write(1, "pb\n", 3);
 		(*bench)->cntpb++;
 	}
 }

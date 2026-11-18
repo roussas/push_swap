@@ -19,7 +19,7 @@ static void	ft_putnbr(unsigned int n)
 	write(2, &"0123456789"[n % 10], 1);
 }
 
-unsigned int	total_ops(t_bench *bench)
+static unsigned int	total_ops(t_bench *bench)
 {
 	unsigned int	total_ops;
 
